@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}RentEase{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <h1 class="logo" data-lang="company-name">RentEase</h1>
+            <nav>
+                <a href="/" data-lang="nav-home">Home</a>
+                <a href="/login" data-lang="nav-login">Login</a>
+                <a href="/register" data-lang="nav-register">Register</a>
+                <select id="language-select">
+                    <option value="en">English</option>
+                    <option value="mr">मराठी</option>
+                </select>
+            </nav>
+        </div>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    
+    <script src="{{ url_for('static', filename='js/language.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+    <h2>Dashboard</h2>
+    <p>Manage your rental properties here.</p>
+    <div class="properties">
+        <div class="property">
+            <h3>House 1</h3>
+            <p>Location: New York</p>
+            <p>Price: $1200/month</p>
+        </div>
+        <div class="property">
+            <h3>House 2</h3>
+            <p>Location: Los Angeles</p>
+            <p>Price: $1500/month</p>
+        </div>
+    </div>
+{% endblock %}
