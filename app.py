@@ -5,13 +5,17 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 import os
 from flask_cors import CORS
+import logging
+
+# Enable logging
+logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS if your frontend is separate
+CORS(app, resources={r"/*": {"origins": "*"}})
 app.secret_key = 'your_secret_key'  # For session management
 
 # MongoDB Connection
-MONGO_URI = os.getenv("MONGO_URI")  # Fetching the URI from environment variable
+MONGO_URI = os.getenv("MONGO_URI")  # Fetching the URI from environment variables
 client = MongoClient(MONGO_URI)
 db = client['rentease']  # Database name
 users_collection = db['users']  # Users Collection
@@ -20,8 +24,6 @@ tenants_collection = db['tenants']  # Tenants Collection
 electricity_bills_collection = db['electricity_bills']  # Collection for storing electricity bills
 rent_collection = db["rent"]  # Collection storing rent details ✅ ADDED THIS
 expenses_collection = db["expenses"]
-
-
 
 
 UPLOAD_FOLDER = 'static/uploads'
@@ -487,6 +489,7 @@ def logout():
 
 # if __name__ == '__main__':
 #     app.run(debug=True)
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
