@@ -4,8 +4,11 @@ from pymongo import MongoClient
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 import os
+from flask_cors import CORS
+
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS if your frontend is separate
 app.secret_key = 'your_secret_key'  # For session management
 
 # MongoDB Connection
@@ -481,6 +484,8 @@ def logout():
 
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app.run(debug=True)
 
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
