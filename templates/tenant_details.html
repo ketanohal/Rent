@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Tenant Details{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tenants.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2>Tenant Details</h2>
+        <div class="tenant-details">
+            <p><strong>Name:</strong> {{ tenant.name }}</p>
+            <p><strong>Phone Number:</strong> {{ tenant.phone_number }}</p>
+            <p><strong>Alternate Phone:</strong> {{ tenant.alternate_phone }}</p>
+            <p><strong>Unit Type:</strong> {{ tenant.unit_type }}</p>
+            <p><strong>Deposit Amount:</strong> ₹{{ tenant.deposit_amount }}</p>
+            <p><strong>Rent Amount:</strong> ₹{{ tenant.rent_amount }}</p>
+            <p><strong>Lease Start Date:</strong> {{ tenant.lease_start_date.strftime('%Y-%m-%d') }}</p>
+            <p><strong>Rent Due Date:</strong> {{ tenant.rent_due_date }}</p>
+            <p><strong>Notes:</strong> {{ tenant.notes }}</p>
+
+            <h3>Rent Summary</h3>
+
+            {% if rent_history %}
+                <div class="rent-summary">
+                    <p><strong>Total Rent Paid:</strong> <span class="total-rent">₹{{ total_rent_paid }}</span></p>
+                </div>
+
+                <table class="rent-table">
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Electricity Bill (₹)</th>
+                            <th>Total Rent (₹)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for rent in rent_history %}
+                        <tr>
+                            <td>{{ rent.month }}</td>
+                            <td>₹{{ rent.electricity_bill }}</td>
+                            <td>₹{{ rent.total_rent }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p class="no-rent">No rent records found for this tenant.</p>
+            {% endif %}
+
+            <a href="{{ url_for('tenants') }}" class="back-btn">Back to List</a>
+        </div>
+    </div>
+{% endblock %}

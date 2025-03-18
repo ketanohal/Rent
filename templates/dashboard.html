@@ -2,23 +2,79 @@
 
 {% block title %}Dashboard{% endblock %}
 
-{% block head %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
-{% endblock %}
-
 {% block content %}
-    <h2>Dashboard</h2>
-    <p>Manage your rental properties here.</p>
-    <div class="properties">
-        <div class="property">
-            <h3>House 1</h3>
-            <p>Location: New York</p>
-            <p>Price: $1200/month</p>
+<div class="dashboard-container-dashboard">
+    <!-- Financial Overview -->
+    <div class="report-container-dashboard">
+        <h2 data-lang="financial-overview">Financial Overview</h2>
+        
+        <!-- Month Filter Dropdown -->
+        <div class="filter-options-dashboard">
+            <label for="month-filter-dashboard">Filter by Month:</label>
+            <select id="month-filter-dashboard" onchange="filterByMonth()">
+                <option value="" {% if not selected_month %}selected{% endif %}>All</option>
+                {% for month in available_months %}
+                    <option value="{{ month }}" {% if month == selected_month %}selected{% endif %}>{{ month }}</option>
+                {% endfor %}
+            </select>
         </div>
-        <div class="property">
-            <h3>House 2</h3>
-            <p>Location: Los Angeles</p>
-            <p>Price: $1500/month</p>
+
+        <div class="report-boxes-dashboard">
+            <div class="report-box-dashboard income-dashboard">
+                <h4 data-lang="total-income">Total Income</h4>
+                <p>${{ total_income }}</p>
+            </div>
+            <div class="report-box-dashboard electricity-dashboard">
+                <h4 data-lang="electricity-expenses">Electricity Expenses</h4>
+                <p>${{ total_electricity_expenses }}</p>
+            </div>
+            <div class="report-box-dashboard expenses-dashboard">
+                <h4 data-lang="total-expenses">Total Expenses</h4>
+                <p>${{ total_expenses }}</p>
+            </div>
         </div>
     </div>
+
+    <!-- Tenant Billing Details with Month Filter -->
+    <div class="report-container-dashboard">
+        <h2 data-lang="tenant-billing-details">Tenant Billing Details</h2>
+
+        <!-- Tenant Billing Table -->
+        <table class="billing-table-dashboard">
+            <thead>
+                <tr>
+                    <th data-lang="tenant-name">Tenant Name</th>
+                    <th data-lang="month">Month</th>
+                    <th data-lang="rent">Rent</th>
+                    <th data-lang="electricity-bill">Electricity Bill</th>
+                    <th data-lang="total-bill">Total Bill</th>
+                    <th data-lang="contact">Contact</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tenant in tenant_billing_data %}
+                <tr>
+                    <td>{{ tenant.name }}</td>
+                    <td>{{ tenant.month }}</td>
+                    <td>${{ tenant.rent }}</td>
+                    <td>${{ tenant.electricity_bill }}</td>
+                    <td>${{ tenant.total_bill }}</td>
+                    <td>
+                        <a href="tel:{{ tenant.phone }}" class="call-btn-dashboard">📞</a>
+                        <a href="sms:{{ tenant.phone }}?body=For%20{{ tenant.month }},%20your%20Electricity%20Bill%20is%20${{ tenant.electricity_bill }},%20Rent%20is%20${{ tenant.rent }},%20Total%20Bill%20is%20${{ tenant.total_bill }}" class="message-btn-dashboard">✉️</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    function filterByMonth() {
+        var selectedMonth = document.getElementById("month-filter-dashboard").value;
+        window.location.href = window.location.pathname + (selectedMonth ? "?month=" + selectedMonth : "");
+    }
+</script>
+
 {% endblock %}

@@ -1,8 +1,45 @@
 {% extends 'base.html' %}
 
-{% block title %}Home - House Rent{% endblock %}
+{% block title %}Home - RentEase{% endblock %}
 
 {% block content %}
-    <h2>Welcome to House Rent Management</h2>
-    <p>Find or list your rental properties easily!</p>
+    <div class="home-container">
+        <!-- Landing Page Content Section -->
+        <div class="landing-content">
+            <h1 data-lang="home-welcome">Welcome to RentEase</h1>
+            <p data-lang="home-description">
+                Your trusted solution for managing house rentals effortlessly. RentEase provides a seamless way to handle tenant information, manage rental payments, and streamline communication all in one place.
+            </p>
+            <div class="features">
+                <div class="feature-card" data-lang="feature-1">✔️ Easy Tenant Management</div>
+                <div class="feature-card" data-lang="feature-2">✔️ Payment Tracking & History</div>
+                <div class="feature-card" data-lang="feature-3">✔️ Automated Notifications</div>
+                <div class="feature-card" data-lang="feature-4">✔️ Secure Data Management</div>
+            </div>
+        </div>
+
+        <!-- Login Form Section -->
+        <div class="main-section">
+            <h2 data-lang="login-heading">Login</h2>
+            <form action="/login" method="POST">
+                <div class="input-container">
+                    <label for="username" data-lang="label-username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-container">
+                    <label for="password" data-lang="label-password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="submit-btn" data-lang="btn-login">Login</button>
+                <div class="signup-link">
+                    <span data-lang="signup-link"></span>
+                    <a href="/register" data-lang="link-signup"></a>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+    <script>
+        
+    </script>
 {% endblock %}

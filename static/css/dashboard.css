@@ -1,0 +1,218 @@
+/* ===== Dashboard Page Styles ===== */
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #0A192F; /* Dark background */
+    color: #E0E7FF;
+}
+
+/* Dashboard Container – Centered on all devices */
+.dashboard-container-dashboard {
+    margin: -35px auto 0; /* 80px top margin (for fixed navbar) and auto left/right centering */
+    max-width: 1200px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* Report Container */
+.report-container-dashboard {
+    background: #112240;
+    padding: 3px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.report-container-dashboard h2 {
+    font-size: 1.6rem;
+    color: #64FFDA;
+    margin-bottom: 15px;
+}
+
+/* Filter Options */
+.filter-options-dashboard {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.filter-options-dashboard label {
+    font-size: 1rem;
+    color: #CCD6F6;
+    margin-right: 10px;
+}
+
+/* Filter Dropdown */
+#month-filter-dashboard {
+    padding: 8px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #64FFDA;
+    background: #1E293B;
+    color: #E0E7FF;
+}
+
+/* Report Boxes */
+.report-boxes-dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.report-box-dashboard {
+    flex: 1 1 250px;
+    background: #1E293B;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin: 10px;
+}
+
+.report-box-dashboard:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.report-box-dashboard h4 {
+    font-size: 1.2rem;
+    color: #64FFDA;
+    margin-bottom: 10px;
+}
+
+.report-box-dashboard p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #E0E7FF;
+}
+
+/* Billing Table */
+.billing-table-dashboard {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow-x: auto;
+    display: block
+}
+
+.billing-table-dashboard th,
+.billing-table-dashboard td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+.billing-table-dashboard th {
+    background-color: #1E293B;
+    color: #64FFDA;
+    font-size: 1.1rem;
+}
+
+.billing-table-dashboard tr:nth-child(even) {
+    background-color: #0A192F;
+}
+
+.billing-table-dashboard tr:hover {
+    background-color: #112240;
+}
+
+/* Call & Message Buttons */
+.call-btn-dashboard,
+.message-btn-dashboard {
+    font-size: 20px;
+    text-decoration: none;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.call-btn-dashboard {
+    color: #00FF00;
+}
+
+.message-btn-dashboard {
+    color: #0099FF;
+}
+
+/* ===== Responsive Adjustments ===== */
+/* For screens below 768px */
+@media (max-width: 768px) {
+    .billing-table-dashboard {
+        width: 100%;
+        font-size: 0.9rem;
+        display: block;
+        overflow-x: auto; /* Enable scrolling only when needed */
+        max-width: 100%;
+    }
+
+    .billing-table-dashboard th,
+    .billing-table-dashboard td {
+        padding: 6px; /* Reduce padding */
+        font-size: 0.85rem; /* Reduce font size */
+        white-space: nowrap; /* Prevent line breaks in headers */
+    }
+
+    .report-boxes-dashboard {
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: space-around;
+    }
+
+    .report-box-dashboard {
+        flex: 1 1 30%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 8px;
+    }
+}
+
+/* For very small screens below 480px */
+@media (max-width: 480px) {
+    .billing-table-dashboard {
+        width: 100%;
+        font-size: 0.8rem;
+        display: block;
+        overflow-x: auto; /* Horizontal scroll only if needed */
+        max-width: 100%;
+    }
+
+    .billing-table-dashboard th,
+    .billing-table-dashboard td {
+        padding: 4px; /* Further reduce padding */
+        font-size: 0.75rem; /* Further reduce font size */
+    }
+
+    .report-boxes-dashboard {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .report-box-dashboard {
+        width: 90%;
+        padding: 8px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: center;
+    }
+
+    .report-box-dashboard h4 {
+        font-size: 0.9rem;
+        margin: 0 10px;
+    }
+
+    .report-box-dashboard p {
+        font-size: 1rem;
+        font-weight: bold;
+        margin: 0 10px;
+    }
+}

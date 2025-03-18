@@ -1,88 +1,155 @@
 /* register.css */
+
+/* Base Styles */
+body {
+    background-color: #0b0f1a;
+    color: #e0e0e0;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
 .login-page {
-    background-color: #121212; /* Dark background for register page */
-    color: #fff; /* White text for register page */
-    font-family: 'Arial', sans-serif;
-    min-height: calc(100vh - 70px); /* Subtract the navbar height (70px) */
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 70px; /* Adjust to navbar height */
+    min-height: 100vh;
+    padding: 20px;
 }
 
 .login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-}
-
-.login-box {
-    background-color: rgba(33, 33, 33, 0.9); /* Slight transparency for the box */
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: rgba(33, 33, 33, 0.9);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
     width: 100%;
     max-width: 400px;
-    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    /* Removed negative margin-top to prevent overlapping the header */
+    margin-top: 20px;
 }
 
 .login-box h2 {
-    font-size: 24px;
-    color: #03a9f4; /* Bright blue for heading */
+    color: #4db8ff;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .input-container {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     text-align: left;
 }
 
+.input-container label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Input Fields */
 input[type="text"],
 input[type="email"],
 input[type="password"] {
-    width: 100%;
+    width: 90%;
     padding: 10px;
-    margin: 10px 0;
+    margin-top: 5px;
     border-radius: 6px;
     border: 2px solid #3a3a3a;
     background-color: #2c2c2c;
-    color: #fff;
-    font-size: 16px;
+    color: #e0e0e0;
+    font-size: 1rem;
     outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus {
-    border-color: #03a9f4; /* Highlighted border on focus */
+    border-color: #4db8ff;
+    box-shadow: 0 0 5px rgba(77, 184, 255, 0.6);
 }
 
+/* Submit Button */
 button.submit-btn {
     width: 100%;
-    padding: 12px;
-    background-color: #03a9f4;
-    color: #fff;
+    padding: 10px;
+    background-color: #4db8ff;
+    color: #0b0f1a;
     border: none;
     border-radius: 6px;
-    font-size: 16px;
+    font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button.submit-btn:hover {
-    background-color: #0288d1;
-}
-
-.signup-link {
+    transition: background-color 0.3s;
     margin-top: 10px;
 }
 
+button.submit-btn:hover {
+    background-color: #1a6ba1;
+}
+
+/* Signup Link */
+.signup-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
 .signup-link a {
-    color: #03a9f4;
+    color: #4db8ff;
     text-decoration: none;
 }
 
 .signup-link a:hover {
     text-decoration: underline;
+}
+
+/* ---------- Mobile Optimizations ---------- */
+
+/* For screens below 768px */
+@media screen and (max-width: 768px) {
+    .login-container {
+        padding: 20px;
+        max-width: 90%;
+        margin-top: 20px;
+    }
+    
+    .login-box h2 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+    
+    button.submit-btn {
+        padding: 8px;
+        font-size: 0.95rem;
+    }
+}
+
+/* For screens below 480px */
+@media screen and (max-width: 480px) {
+    .login-container {
+        padding: 15px;
+        max-width: 100%;
+        margin-top: -70px;
+    }
+    
+    .login-box h2 {
+        font-size: 1.6rem;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        padding: 6px;
+        font-size: 0.85rem;
+    }
+    
+    button.submit-btn {
+        padding: 6px;
+        font-size: 0.9rem;
+    }
 }

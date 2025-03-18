@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block title %}<span data-lang="add_tenant">Add Tenant</span>{% endblock %}
+
+{% block content %}
+    <div class="dashboard-container-tenant">
+        <div class="report-container-tenant">
+            <h2 data-lang="add_tenant">Add Tenant</h2>
+            <form action="{{ url_for('add_tenant') }}" method="post" enctype="multipart/form-data" class="tenant-form-tenant">
+
+                <div class="filter-options-tenant">
+                    <label for="tenant-name-tenant" data-lang="tenant_name">Tenant Name:</label>
+                    <input type="text" id="tenant-name-tenant" name="tenant_name" class="input-tenant" required>
+                </div>
+
+                <div class="filter-options-tenant">
+                    <label for="phone-tenant" data-lang="phone_number">Phone Number:</label>
+                    <input type="tel" id="phone-tenant" name="phone" class="input-tenant" required>
+                </div>
+
+                <div class="filter-options-tenant">
+                    <label for="alt-phone-tenant" data-lang="alt_phone_number">Alternate Phone Number:</label>
+                    <input type="tel" id="alt-phone-tenant" name="alt_phone" class="input-tenant">
+                </div>
+
+                <div class="filter-options-tenant">
+                    <label for="unit-type-tenant" data-lang="select_unit_type">Select Unit Type:</label>
+                    <select id="unit-type-tenant" name="unit_type" class="select-tenant" required>
+                        <option value="" data-lang="select_unit">Select a unit type</option>
+                        {% for unit in units %}
+                            <option value="{{ unit.unit_type }}">{{ unit.unit_type }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="filter-options-tenant">
+                    <label for="room-number-tenant" data-lang="select_room_number">Select Room Number:</label>
+                    <select id="room-number-tenant" name="room_number" class="select-tenant" required>
+                        <option value="" data-lang="select_room">Select a room</option>
+                    </select>
+                </div>
+
+                <div class="filter-options-tenant">
+                    <label for="deposit-tenant" data-lang="deposit_amount">Deposit Amount:</label>
+                    <input type="number" id="deposit-tenant" name="deposit" class="input-tenant" required>
+                </div>
+
+                <div class="filter-options-tenant">
+                    <label for="rent-tenant" data-lang="rent_amount">Rent Amount (Per Month):</label>
+                    <input type="number" id="rent-tenant" name="rent" class="input-tenant" required>
+                </div>
+
+                <div class="filter-options-tenant">
+                    <label for="lease-date-tenant" data-lang="lease_start_date">Lease Start Date:</label>
+                    <input type="date" id="lease-date-tenant" name="lease_date" class="input-tenant" required>
+                </div>
+
+                <div class="filter-options-tenant">
+                    <label for="rent-due-date-tenant" data-lang="rent_due_date">Rent Due Date:</label>
+                    <input type="date" id="rent-due-date-tenant" name="rent_due_date" class="input-tenant" required>
+                </div>
+
+                <div class="filter-options-tenant">
+                    <label for="notes-tenant" data-lang="notes">Notes:</label>
+                    <textarea id="notes-tenant" name="notes" rows="3" class="textarea-tenant"></textarea>
+                </div>
+
+                <div class="filter-options-tenant">
+                    <label for="documents-tenant" data-lang="upload_documents">Upload Documents (PDF, Images):</label>
+                    <input type="file" id="documents-tenant" name="documents" accept=".pdf, .jpg, .jpeg, .png" multiple class="input-tenant">
+                </div>
+
+                <button type="submit" class="submit-btn-tenant" data-lang="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/language.js') }}"></script>
+    <script>
+        document.getElementById("unit-type-tenant").addEventListener("change", function () {
+            let unitType = this.value;
+            fetch(`/get_rooms?unit_type=${unitType}`)
+                .then(response => response.json())
+                .then(data => {
+                    let roomSelect = document.getElementById("room-number-tenant");
+                    roomSelect.innerHTML = "<option value='' data-lang='select_room'>Select a room</option>";
+                    data.rooms.forEach(room => {
+                        let option = document.createElement("option");
+                        option.value = room;
+                        option.textContent = `Room ${room}`;
+                        roomSelect.appendChild(option);
+                    });
+                });
+        });
+    </script>
+{% endblock %}

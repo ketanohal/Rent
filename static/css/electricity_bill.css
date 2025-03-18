@@ -1,0 +1,231 @@
+/* ===== Electricity Bill Page Styles ===== */
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #0A192F; /* Dark background */
+    color: #E0E7FF;
+}
+
+/* Dashboard Container – For large screens, force horizontal centering */
+.dashboard-container-electricity {
+    margin: 80px auto 0 !important;  /* 80px top margin, auto horizontal centering */
+    max-width: 1200px;
+    width: 90%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Report Container */
+.report-container-electricity {
+    background: #112240;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    margin: 0 auto 30px auto;  /* Auto horizontal margin */
+    max-width: 800px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.report-container-electricity h2 {
+    font-size: 1.8rem;
+    color: #64FFDA;
+    margin-bottom: 20px;
+}
+
+/* Electricity Bill Form */
+.electricity-form-electricity {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+/* Form Group for Inputs */
+.filter-options-electricity {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto 10px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.filter-options-electricity label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #CCD6F6;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+/* Input Fields */
+.input-electricity {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #64FFDA;
+    border-radius: 5px;
+    background: #1E293B;
+    color: #E0E7FF;
+    box-sizing: border-box;
+}
+
+/* Submit Button */
+.submit-btn-electricity {
+    background: #2980b9;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    max-width: 250px;
+    margin: 0 auto;
+    display: block;
+    transition: background 0.3s;
+}
+
+.submit-btn-electricity:hover {
+    background: #1c6ea4;
+}
+
+/* Electricity Filter Form (Second Form) */
+.electricity-filter-form-electricity {
+    margin-bottom: 30px;
+}
+
+/* Billing Table */
+.billing-table-electricity {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    overflow-x: auto;
+    display: block;
+    /* Removed display: block to allow natural table layout */
+}
+
+.billing-table-electricity th,
+.billing-table-electricity td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.billing-table-electricity th {
+    background: #1E293B;
+    color: #64FFDA;
+    font-size: 1.1rem;
+}
+
+.billing-table-electricity tr:nth-child(even) {
+    background: #0A192F;
+}
+
+.billing-table-electricity tr:hover {
+    background: #112240;
+}
+
+/* Menu Toggle Button */
+.menu-toggle-electricity {
+    position: absolute;
+    top: 10px;
+    left: 260px;
+    font-size: 20px;
+    background: #2c3e50;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* ===== Responsive Adjustments ===== */
+
+/* For screens below 768px */
+@media (max-width: 768px) {
+    .dashboard-container-electricity {
+        margin: 70px auto 0 !important;
+        width: 95%;
+        padding: 15px;
+    }
+    
+    .menu-toggle-electricity {
+        left: 10px;
+    }
+    
+    .report-container-electricity {
+        margin: 15px auto;
+        padding: 20px;
+        max-width: 100%;
+    }
+    
+    .report-container-electricity h2 {
+        font-size: 1.6rem;
+    }
+    
+    .filter-options-electricity label {
+        font-size: 0.9rem;
+    }
+    
+    .input-electricity {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+    
+    .submit-btn-electricity {
+        max-width: 100%;
+        padding: 8px 10px;
+        font-size: 0.95rem;
+    }
+    
+    .billing-table-electricity th,
+    .billing-table-electricity td {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+}
+
+/* For screens below 480px */
+@media (max-width: 480px) {
+    .dashboard-container-electricity {
+        width: 100%;
+        padding: 10px;
+        margin-top: 70px;
+    }
+    
+    .report-container-electricity {
+        padding: 15px;
+        margin-top: -80px;
+
+    }
+    
+    .report-container-electricity h2 {
+        font-size: 1.4rem;
+    }
+    
+    .filter-options-electricity label {
+        font-size: 0.85rem;
+    }
+    
+    .input-electricity {
+        padding: 6px;
+        font-size: 0.85rem;
+    }
+    
+    .submit-btn-electricity {
+        padding: 6px 8px;
+        font-size: 0.9rem;
+    }
+    
+    .billing-table-electricity th,
+    .billing-table-electricity td {
+        padding: 6px;
+        font-size: 0.8rem;
+    }
+}

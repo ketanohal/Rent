@@ -1,54 +1,298 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const translations = {
-        en: {
-            "company-name": "RentEase",
-            "nav-home": "Home",
-            "nav-login": "Login",
-            "nav-register": "Register",
-            "dashboard-title": "Dashboard",
-            "dashboard-desc": "Manage your rental properties here.",
-            "property1-title": "House 1",
-            "property1-location": "Location: New York",
-            "property1-price": "Price: $1200/month",
-            "property2-title": "House 2",
-            "property2-location": "Location: Los Angeles",
-            "property2-price": "Price: $1500/month"
-        },
-        mr: {
-            "company-name": "रेन्टइझ",
-            "nav-home": "मुख्यपृष्ठ",
-            "nav-login": "लॉगिन",
-            "nav-register": "नोंदणी",
-            "dashboard-title": "डॅशबोर्ड",
-            "dashboard-desc": "तुमच्या भाड्याच्या मालमत्ता व्यवस्थापित करा.",
-            "property1-title": "घर १",
-            "property1-location": "स्थान: न्यूयॉर्क",
-            "property1-price": "किंमत: $1200/महिना",
-            "property2-title": "घर २",
-            "property2-location": "स्थान: लॉस एंजेलिस",
-            "property2-price": "किंमत: $1500/महिना"
-        }
-    };
-
-    const languageSelect = document.getElementById("language-select");
-
-    function changeLanguage(lang) {
-        document.querySelectorAll("[data-lang]").forEach(element => {
-            const key = element.getAttribute("data-lang");
-            if (translations[lang][key]) {
-                element.textContent = translations[lang][key];
-            }
-        });
+window.translations = window.translations || {
+    en: {
+        "company-name": "RentEase",
+        "nav-home": "Home",
+        "nav-login": "Login",
+        "nav-register": "Register",
+        "nav-dashboard": "Dashboard",
+        "nav-logout": "Logout",
+        "add-property": "➕ Add Property",
+        "add_unit": "🏢 Add Unit",
+        "add-tenant": "👤 Add Tenant",
+        "electricity_bill": "⚡ Electricity",
+        "tenant-list": "📋 Tenant List",
+        "expenses": "💸 Expenses",
+        "reports": "📊 Reports",
+        "user-greeting": "Hi,",
+        "company-name": "RentEase",
+        "nav-home": "Home",
+        "nav-login": "Login",
+        "nav-register": "Register",
+        "home-welcome": "Welcome to RentEase",
+        "home-description": "Your trusted solution for managing house rentals effortlessly...",
+        "feature-1": "✔️ Easy Tenant Management",
+        "feature-2": "✔️ Payment Tracking & History",
+        "feature-3": "✔️ Automated Notifications",
+        "feature-4": "✔️ Secure Data Management",
+        "login-heading": "Login",
+        "label-username": "Username",
+        "label-password": "Password",
+        "btn-login": "Login",
+        "signup-link": "Don't have an account?",
+        "link-signup": "Sign up",
+        "register-heading": "Register",
+        "label-email": "Email",
+        "label-confirm-password": "Confirm Password",
+        "btn-register": "Register",
+        "login-link": "Already have an account?",
+        "link-login": "Login",
+        "add-unit-title": "Add Unit",
+        "unit-type": "Select Unit Type:",
+        "number-of-units": "Number of Units:",
+        "submit": "Submit",
+        "vacant-units": "Vacant Units Available",
+        "unit-type-header": "Unit Type",
+        "unit-count-header": "Number of Units",
+        "dashboard-menu": "Dashboard Menu",
+        "add-property": "➕ Add Property",
+        "add-unit": "🏢 Add Unit",
+        "add-tenant": "👤 Add Tenant",
+        "tenant-list": "📋 Tenant List",
+        "expenses": "💸 Expenses",
+        "reports": "📊 Reports",
+        "financial-overview": "Financial Overview",
+        "filter-label": "Filter by:",
+        "filter-1-month": "Last Month",
+        "filter-6-months": "Last 6 Months",
+        "filter-1-year": "Last 1 Year",
+        "filter-custom": "Custom Range",
+        "total-income": "Total Income",
+        "electricity-expenses": "Electricity Expenses",
+        "total-expenses": "Total Expenses",
+        "tenant-billing-details": "Tenant Billing Details",
+        "tenant-name": "Tenant Name",
+        "month": "Month",
+        "rent": "Rent",
+        "electricity-bill": "Electricity Bill",
+        "total-bill": "Total Bill",
+        "contact": "Contact",
+        "add_tenant": "Add Tenant",
+        "tenant_name": "Tenant Name:",
+        "phone_number": "Phone Number:",
+        "alt_phone_number": "Alternate Phone Number:",
+        "select_unit_type": "Select Unit Type:",
+        "select_unit": "Select a unit type",
+        "select_room_number": "Select Room Number:",
+        "select_room": "Select a room",
+        "deposit_amount": "Deposit Amount:",
+        "rent_amount": "Rent Amount (Per Month):",
+        "lease_start_date": "Lease Start Date:",
+        "rent_due_date": "Rent Due Date:",
+        "notes": "Notes:",
+        "upload_documents": "Upload Documents (PDF, Images):",
+        "submit": "Submit",
+        "electricity_bill_calc": "Electricity Bill Calculation",
+        "select_tenant": "Select Tenant:",
+        "date_of_reading": "Date of Reading:",
+        "current_meter_reading": "Current Meter Reading:",
+        "rate_per_unit": "Rate per Unit (₹):",
+        "btn-calculate": "Calculate Bill",
+        "filter_by_month": "Filter by Month:",
+        "all_months": "-- All Months --",
+        "filter_by_tenant": "Filter by Tenant:",
+        "all_tenants": "-- All Tenants --",
+        "btn-apply-filters": "Apply Filters",
+        "electricity_bills": "Electricity Bills",
+        "electricity_bill_calc": "Electricity Bill Calculation",
+        "month": "Month",
+        "tenant": "Tenant",
+        "room": "Room",
+        "last_meter_reading": "Last Meter Reading",
+        "current_meter_reading_table": "Current Meter Reading",
+        "units_consumed": "Units Consumed",
+        "rate_per_unit_table": "Rate per Unit (₹)",
+        "total_bill": "Total Bill (₹)",
+        "apply_filters": "Apply Filters",
+        "tenant_list": "Tenant List",
+        "tenant_name": "Name",
+        "phone": "Phone",
+        "unit_type": "Unit Type",
+        "rent_amount": "Rent Amount",
+        "lease_start_date": "Lease Start Date",
+        "details": "Details",
+        "view": "View",
+        "expenses": "Expenses",
+        "add_expense": "Add Expense",
+        "expense_name": "Expense Name",
+        "expense_amount": "Amount ($)",
+        "expense_date": "Date",
+        "add_expense_btn": "Add Expense",
+        "expense_list": "Expense List",
+        "expense_month": "Month",
+        "action": "Action",
+        "delete": "Delete",
+        "reports_title": "Reports - Under Construction",
+        "report_page": "Report Page",
+        "under_construction": "This page is currently under construction.",
+        "check_back_later": "Please check back later.",
+        
+        
+        
+    },
+    mr: {
+        "company-name": "रेन्टईज",
+        "nav-home": "मुख्यपृष्ठ",
+        "nav-login": "लॉगिन",
+        "nav-register": "नोंदणी",
+        "nav-dashboard": "डॅशबोर्ड",
+        "nav-logout": "बाहेर पडा",
+        "add-property": "➕ मालमत्ता जोडा",
+        "add_unit": "🏢 युनिट जोडा",
+        "add-tenant": "👤 भाडेकरू जोडा",
+        "electricity_bill": "⚡ वीज",
+        "tenant-list": "📋 भाडेकरू यादी",
+        "expenses": "💸 खर्च",
+        "reports": "📊 अहवाल",
+        "user-greeting": "नमस्कार",
+        "company-name": "रेन्टईज",
+        "nav-home": "मुख्यपृष्ठ",
+        "nav-login": "लॉगिन",
+        "nav-register": "नोंदणी",
+        "home-welcome": "रेन्टईज मध्ये आपले स्वागत आहे",
+        "home-description": "भाडे व्यवस्थापन सोप्या पद्धतीने करण्यासाठी तुमचा विश्वसनीय उपाय...",
+        "feature-1": "✔️ सोपी भाडेकरू व्यवस्थापन",
+        "feature-2": "✔️ पेमेंट ट्रॅकिंग आणि इतिहास",
+        "feature-3": "✔️ स्वयंचलित सूचना",
+        "feature-4": "✔️ सुरक्षित डेटा व्यवस्थापन",
+        "login-heading": "लॉगिन",
+        "label-username": "वापरकर्ता नाव",
+        "label-password": "पासवर्ड",
+        "btn-login": "लॉगिन",
+        "signup-link": "खाते नाही का?",
+        "link-signup": "नोंदणी करा",
+        "register-heading": "नोंदणी",
+        "label-email": "ईमेल",
+        "label-confirm-password": "पासवर्डची पुष्टी करा",
+        "btn-register": "नोंदणी करा",
+        "login-link": "आधीच खाते आहे?",
+        "link-login": "लॉगिन",
+        "add-unit-title": "युनिट जोडा",
+        "unit-type": "युनिट प्रकार निवडा:",
+        "number-of-units": "युनिट्सची संख्या:",
+        "submit": "सबमिट करा",
+        "vacant-units": "उपलब्ध रिकामे युनिट्स",
+        "unit-type-header": "युनिट प्रकार",
+        "unit-count-header": "युनिट्सची संख्या",
+        "dashboard-menu": "डॅशबोर्ड मेनू",
+        "add-property": "➕ मालमत्ता जोडा",
+        "add-unit": "🏢 युनिट जोडा",
+        "add-tenant": "👤 भाडेकरू जोडा",
+        "tenant-list": "📋 भाडेकरू यादी",
+        "expenses": "💸 खर्च",
+        "reports": "📊 अहवाल",
+        "financial-overview": "आर्थिक विहंगावलोकन",
+        "filter-label": "गाळणी करा:",
+        "filter-1-month": "मागील महिना",
+        "filter-6-months": "मागील ६ महिने",
+        "filter-1-year": "मागील १ वर्ष",
+        "filter-custom": "सानुकूल श्रेणी",
+        "total-income": "एकूण उत्पन्न",
+        "electricity-expenses": "वीज खर्च",
+        "total-expenses": "एकूण खर्च",
+        "tenant-billing-details": "भाडेकरू बिलिंग तपशील",
+        "tenant-name": "भाडेकरूचे नाव",
+        "month": "महिना",
+        "rent": "भाडे",
+        "electricity-bill": "वीज बिल",
+        "electricity_bill_calc": "वीज बिल गणना",
+        "total-bill": "एकूण बिल",
+        "contact": "संपर्क",
+        "add_tenant": "भाडेकरू जोडा",
+        "tenant_name": "भाडेकरूचे नाव:",
+        "phone_number": "फोन नंबर:",
+        "alt_phone_number": "पर्यायी फोन नंबर:",
+        "select_unit_type": "युनिट प्रकार निवडा:",
+        "select_unit": "युनिट प्रकार निवडा",
+        "select_room_number": "खोली क्रमांक निवडा:",
+        "select_room": "खोली निवडा",
+        "deposit_amount": "ठेव रक्कम:",
+        "rent_amount": "भाडे रक्कम (दर महिना):",
+        "lease_start_date": "लीज प्रारंभ तारीख:",
+        "rent_due_date": "भाडे देय तारीख:",
+        "notes": "टीप:",
+        "upload_documents": "दस्तऐवज अपलोड करा (PDF, प्रतिमा):",
+        "submit": "सबमिट करा",
+        "electricity_bill_calc": "वीज बिल गणना",
+        "select_tenant": "भाडेकरू निवडा:",
+        "date_of_reading": "वाचनाची तारीख:",
+        "current_meter_reading": "सध्याचे मीटर वाचन:",
+        "rate_per_unit": "दर प्रति युनिट (₹):",
+        "btn-calculate": "बिल काढा",
+        "filter_by_month": "महिन्यानुसार गाळणी:",
+        "all_months": "-- सर्व महिने --",
+        "filter_by_tenant": "भाडेकरू नुसार गाळणी:",
+        "all_tenants": "-- सर्व भाडेकरू --",
+        "btn-apply-filters": "गाळणी लागू करा",
+        "electricity_bills": "वीज बिल",
+        "month": "महिना",
+        "tenant": "भाडेकरू",
+        "room": "खोली",
+        "last_meter_reading": "मागील मीटर वाचन",
+        "current_meter_reading_table": "सध्याचे मीटर वाचन",
+        "units_consumed": "वापरलेल्या युनिट्स",
+        "rate_per_unit_table": "दर प्रति युनिट (₹)",
+        "total_bill": "एकूण बिल (₹)",
+        "apply_filters": "गाळणी लागू करा",
+        "tenant_list": "भाडेकरू यादी",
+        "tenant_name": "नाव",
+        "phone": "फोन",
+        "unit_type": "युनिट प्रकार",
+        "rent_amount": "भाड्याची रक्कम",
+        "lease_start_date": "भाड्याची सुरूवात तारीख",
+        "details": "तपशील",
+        "view": "पहा",
+        "expenses": "खर्च",
+        "add_expense": "खर्च जोडा",
+        "expense_name": "खर्चाचे नाव",
+        "expense_amount": "रक्कम ($)",
+        "expense_date": "तारीख",
+        "add_expense_btn": "खर्च जोडा",
+        "expense_list": "खर्च यादी",
+        "expense_month": "महिना",
+        "action": "क्रिया",
+        "delete": "हटवा",
+        "reports_title": "अहवाल - बांधकाम सुरू आहे",
+        "report_page": "अहवाल पृष्ठ",
+        "under_construction": "हे पृष्ठ सध्या बांधकामाच्या टप्प्यात आहे.",
+        "check_back_later": "कृपया नंतर पुन्हा तपासा.",
+        
+    
     }
+};
 
-    languageSelect.addEventListener("change", function () {
-        const selectedLang = this.value;
-        localStorage.setItem("selectedLanguage", selectedLang);
-        changeLanguage(selectedLang);
+// Function to update language
+function updateLanguage(selectedLang) {
+    document.querySelectorAll("[data-lang]").forEach(element => {
+        const key = element.getAttribute("data-lang");
+        if (translations[selectedLang] && translations[selectedLang][key]) {
+            element.textContent = translations[selectedLang][key];
+        }
     });
 
-    // Load saved language preference
+    const logo = document.querySelector(".logo");
+    if (logo) {
+        logo.textContent = translations[selectedLang]["company-name"];
+    }
+    console.log(`Language changed to: ${selectedLang}`);
+}
+
+// Event listener for DOM load
+document.addEventListener("DOMContentLoaded", () => {
+    const languageSelect = document.getElementById("language-select-base");
+    if (!languageSelect) {
+        console.error("Language selector not found.");
+        return;
+    }
+    
+    // Load saved language from localStorage
     const savedLanguage = localStorage.getItem("selectedLanguage") || "en";
     languageSelect.value = savedLanguage;
-    changeLanguage(savedLanguage);
+    updateLanguage(savedLanguage);
+    
+    // Change language event
+    languageSelect.addEventListener("change", (event) => {
+        const selectedLang = event.target.value;
+        localStorage.setItem("selectedLanguage", selectedLang);
+        updateLanguage(selectedLang);
+    });
 });

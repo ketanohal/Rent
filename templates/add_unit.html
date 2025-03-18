@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}<span data-lang="add_unit">Add Unit</span>{% endblock %}
+
+{% block content %}
+    <div class="dashboard-container-unit">
+        <div class="report-container-unit">
+            <h2 data-lang="add_unit">Add Unit</h2>
+            <form action="/add_unit" method="post" class="unit-form-unit">
+                <div class="filter-options-unit">
+                    <label for="unit-type-unit" data-lang="unit-type">Select Unit Type:</label>
+                    <select id="unit-type-unit" name="unit_type" class="input-unit" required>
+                        <option value="1_room" data-lang="1_room">1 Room</option>
+                        <option value="1_rk" data-lang="1_rk">1 RK</option>
+                        <option value="1_bhk" data-lang="1_bhk">1 BHK</option>
+                    </select>
+                </div>
+                
+                <div class="filter-options-unit">
+                    <label for="unit-count-unit" data-lang="number-of-units">Number of Units:</label>
+                    <input type="number" id="unit-count-unit" name="unit_count" class="input-unit" min="1" required>
+                </div>
+                
+                <button type="submit" class="submit-btn-unit" data-lang="submit">Submit</button>
+            </form>
+
+            <!-- Display Stored Units -->
+            <h2 data-lang="vacant_units">Vacant Units Available</h2>
+            <table class="units-table-unit" border="1">
+                <thead>
+                    <tr>
+                        <th data-lang="unit-type-header">Unit Type</th>
+                        <th data-lang="unit-count-header">Number of Units</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for unit in units %}
+                    <tr>
+                        <td>{{ unit.unit_type }}</td>
+                        <td>{{ unit.unit_count }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/language.js') }}"></script>
+{% endblock %}

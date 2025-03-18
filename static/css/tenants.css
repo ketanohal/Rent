@@ -1,0 +1,219 @@
+/* ===== Tenants Page Styles ===== */
+
+/* General Body Styling */
+body {
+    background-color: #0A192F; /* Dark Navy */
+    color: #CCD6F6; /* Light Text */
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container Styling */
+.container-tenants {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #112240; /* Darker Navy */
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Header Styling */
+.container-tenants h2 {
+    color: #64FFDA; /* Light Blue */
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Subheader / Paragraph Styling */
+.container-tenants p {
+    color: #A8B2D1; /* Light Gray */
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+/* Table Styling */
+.tenant-table-tenants {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tenant-table-tenants th,
+.tenant-table-tenants td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #444;
+    box-sizing: border-box;
+}
+
+.tenant-table-tenants th {
+    background-color: #1D2A48; /* Slightly lighter Navy */
+    color: #64FFDA; /* Light Blue */
+    font-weight: bold;
+}
+
+.tenant-table-tenants td {
+    background-color: #25345C; /* Medium Navy */
+    color: #A8B2D1; /* Light Gray */
+}
+
+/* Links Styling */
+.tenant-table-tenants a {
+    font-size: 15px;
+    color: #ffffff; /* White */
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.tenant-table-tenants a:hover {
+    color: #64FFDA; /* Light Blue on hover */
+}
+
+/* View Button Styling */
+.view-btn-tenants {
+    background-color: #1f8c3a;  /* Greenish accent */
+    color: #112240;            /* Dark Navy */
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.view-btn-tenants:hover {
+    background-color: #A8B2D1; /* Lighter accent */
+    color: #112240;
+}
+
+/* ===== Responsive Adjustments ===== */
+/* ===== Responsive Table Styling for Mobile Devices ===== */
+
+/* General Table Adjustments */
+.tenant-table-tenants {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Table Row and Cell Styling */
+.tenant-table-tenants th, 
+.tenant-table-tenants td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #444;
+    box-sizing: border-box;
+}
+
+/* Ensure Full Width for Rows */
+.tenant-table-tenants tr {
+    width: 100%;
+    display: table-row;
+}
+
+/* Responsive Design for Smaller Screens */
+
+/* For tablets (max-width: 1200px) */
+@media (max-width: 1200px) {
+    .container-tenants {
+        max-width: 90%;
+    }
+    .tenant-table-tenants th, 
+    .tenant-table-tenants td {
+        padding: 12px;
+        font-size: 15px;
+    }
+}
+
+/* For tablets (max-width: 992px) */
+@media (max-width: 992px) {
+    .container-tenants {
+        max-width: 95%;
+    }
+    .tenant-table-tenants th, 
+    .tenant-table-tenants td {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+/* For small devices (max-width: 768px) */
+@media (max-width: 768px) {
+    .tenant-table-tenants thead {
+        display: none; /* Hide headers */
+    }
+    .tenant-table-tenants tbody {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .tenant-table-tenants tr {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-bottom: 15px;
+        border: 1px solid #444;
+        padding: 12px;
+        border-radius: 8px;
+        background-color: #25345C;
+        box-sizing: border-box;
+    }
+    .tenant-table-tenants td {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 10px;
+        font-size: 13px;
+        border-bottom: 1px solid #444;
+        box-sizing: border-box;
+    }
+    .tenant-table-tenants td:last-child {
+        border-bottom: none;
+    }
+    .tenant-table-tenants td::before {
+        content: attr(data-lang);
+        font-weight: bold;
+        color: #64FFDA;
+    }
+    /* Full-width buttons */
+    .view-btn-tenants {
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+        padding: 10px;
+    }
+}
+
+/* For extra small devices (max-width: 600px) */
+@media (max-width: 600px) {
+    .container-tenants {
+        width: 100%;
+        padding: 10px;
+    }
+    .tenant-table-tenants tr {
+        padding: 10px;
+    }
+    .tenant-table-tenants td {
+        padding: 8px;
+        font-size: 12px;
+    }
+}
+
+/* For very small devices (max-width: 480px) */
+@media (max-width: 480px) {
+    .container-tenants {
+        width: 100%;
+        margin: 5px auto;
+        padding: 8px;
+    }
+    .tenant-table-tenants tr {
+        padding: 8px;
+    }
+    .tenant-table-tenants td {
+        padding: 6px;
+        font-size: 11px;
+    }
+}

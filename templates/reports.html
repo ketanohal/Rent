@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}<span data-lang="reports_title">Reports - Under Construction</span>{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/reports.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="report-underconstruction">
+    <div class="report-card">
+        <h1 data-lang="report_page">Report Page</h1>
+        <p data-lang="under_construction">This page is currently under construction.</p>
+        <p data-lang="check_back_later">Please check back later.</p>
+        <div class="loader"></div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/language.js') }}"></script>
+{% endblock %}

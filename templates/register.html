@@ -7,28 +7,30 @@
     <div class="login-page">
         <div class="login-container">
             <div class="login-box">
-                <h2>Register for RentEase</h2>
+                <h2 data-lang="register-heading">Register</h2>
                 <form action="/register" method="POST">
                     <div class="input-container">
-                        <label for="email">Email</label>
+                        <label for="email" data-lang="label-email">Email</label>
                         <input type="email" id="email" name="email" required>
                     </div>
                     <div class="input-container">
-                        <label for="username">Username</label>
+                        <label for="username" data-lang="label-username">Username</label>
                         <input type="text" id="username" name="username" required>
                     </div>
                     <div class="input-container">
-                        <label for="password">Password</label>
+                        <label for="password" data-lang="label-password">Password</label>
                         <input type="password" id="password" name="password" required>
                     </div>
                     <div class="input-container">
-                        <label for="confirm-password">Confirm Password</label>
+                        <label for="confirm-password" data-lang="label-confirm-password">Confirm Password</label>
                         <input type="password" id="confirm-password" name="confirm-password" required>
                     </div>
-                    <button type="submit" class="submit-btn">Register</button>
+                    <button type="submit" class="submit-btn" data-lang="btn-register">Register</button>
                     <div class="signup-link">
-                        <p>Already have an account? <a href="/login">Login</a></p>
+                        <p data-lang="login-link"></p>
+                        <a href="/login" data-lang="link-login"></a>
                     </div>
+                    
                 </form>
             </div>
         </div>

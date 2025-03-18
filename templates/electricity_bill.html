@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block title %}<span data-lang="electricity_bill_calc">Electricity Bill</span>{% endblock %}
+
+{% block content %}
+    <div class="dashboard-container-electricity">
+        <div class="report-container-electricity">
+            <h2 data-lang="electricity_bill_calc">Electricity Bill Calculation</h2>
+
+            <!-- Electricity Bill Form -->
+            <form class="electricity-form-electricity" action="/electricity_bill" method="POST">
+                <div class="filter-options-electricity">
+                    <label for="tenant_id-electricity" data-lang="select_tenant">Select Tenant:</label>
+                    <select id="tenant_id-electricity" name="tenant_id" class="input-electricity" required>
+                        <option value="" data-lang="all_tenants">-- Select Tenant --</option>
+                        {% for tenant in tenants %}
+                            <option value="{{ tenant._id }}">{{ tenant.name }} (Room {{ tenant.room_number }})</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="filter-options-electricity">
+                    <label for="date-electricity" data-lang="date_of_reading">Date of Reading:</label>
+                    <input type="date" id="date-electricity" name="date" class="input-electricity" required>
+                </div>
+
+                <div class="filter-options-electricity">
+                    <label for="current_reading-electricity" data-lang="current_meter_reading">Current Meter Reading:</label>
+                    <input type="number" id="current_reading-electricity" name="current_reading" class="input-electricity" required>
+                </div>
+
+                <div class="filter-options-electricity">
+                    <label for="rate_per_unit-electricity" data-lang="rate_per_unit">Rate per Unit (₹):</label>
+                    <input type="number" step="0.01" id="rate_per_unit-electricity" name="rate_per_unit" class="input-electricity" required>
+                </div>
+
+                <button type="submit" class="submit-btn-electricity" data-lang="submit">Calculate Bill</button>
+            </form>
+
+            <!-- Filters for Displaying Bills -->
+            <form class="electricity-filter-form-electricity" method="GET" action="/electricity_bill">
+                <div class="filter-options-electricity">
+                    <label for="month-electricity" data-lang="filter_by_month">Filter by Month:</label>
+                    <select id="month-electricity" name="month" class="input-electricity">
+                        <option value="" data-lang="all_months">-- All Months --</option>
+                        {% for month in all_months %}
+                            <option value="{{ month }}" {% if selected_month == month %}selected{% endif %}>
+                                {{ month }}
+                            </option>
+                        {% endfor %}
+                    </select>
+
+                    <label for="tenant_filter-electricity" data-lang="filter_by_tenant">Filter by Tenant:</label>
+                    <select id="tenant_filter-electricity" name="tenant_filter" class="input-electricity">
+                        <option value="" data-lang="all_tenants">-- All Tenants --</option>
+                        {% for tenant in tenants %}
+                            <option value="{{ tenant._id }}" {% if selected_tenant == tenant._id|string %}selected{% endif %}>
+                                {{ tenant.name }} (Room {{ tenant.room_number }})
+                            </option>
+                        {% endfor %}
+                    </select>
+
+                    <button type="submit" class="submit-btn-electricity" data-lang="apply_filters">Apply Filters</button>
+                </div>
+            </form>
+
+            <!-- Display Electricity Bills -->
+            <h2 data-lang="electricity_bills">Electricity Bills</h2>
+            <table class="billing-table-electricity" border="1">
+                <thead>
+                    <tr>
+                        <th data-lang="month">Month</th>
+                        <th data-lang="tenant">Tenant</th>
+                        <th data-lang="room">Room</th>
+                        <th data-lang="last_meter_reading">Last Meter Reading</th>  
+                        <th data-lang="current_meter_reading_table">Current Meter Reading</th>  
+                        <th data-lang="units_consumed">Units Consumed</th>
+                        <th data-lang="rate_per_unit_table">Rate per Unit (₹)</th>
+                        <th data-lang="total_bill">Total Bill (₹)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for bill in bills %}
+                    <tr>
+                        <td>{{ bill.month }}</td>
+                        <td>{{ bill.tenant_name }}</td>
+                        <td>{{ bill.room_number }}</td>
+                        <td>{{ bill.last_reading }}</td>  
+                        <td>{{ bill.current_reading }}</td>  
+                        <td>{{ bill.units_consumed }}</td>
+                        <td>{{ bill.rate_per_unit }}</td>
+                        <td>{{ bill.total_bill }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- JavaScript for Sidebar Toggle and Language Support -->
+    <script src="{{ url_for('static', filename='js/language.js') }}"></script>
+{% endblock %}

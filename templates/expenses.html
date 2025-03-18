@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}<span data-lang="expenses">Expenses</span>{% endblock %}
+
+{% block content %}
+<div class="expense-container-expenses">
+    <h2 data-lang="add_expense">Add Expense</h2>
+
+    <!-- Expense Form -->
+    <form id="expense-form-expenses" action="/add_expense" method="POST">
+        <label for="expense-name-expenses" data-lang="expense_name">Expense Name:</label>
+        <input type="text" id="expense-name-expenses" name="name" required>
+
+        <label for="expense-amount-expenses" data-lang="expense_amount">Amount ($):</label>
+        <input type="number" id="expense-amount-expenses" name="amount" required>
+
+        <label for="expense-date-expenses" data-lang="expense_date">Date:</label>
+        <input type="date" id="expense-date-expenses" name="date" required>
+
+        <button type="submit" data-lang="add_expense_btn">Add Expense</button>
+    </form>
+
+    <!-- Expenses Table -->
+    <h2 data-lang="expense_list">Expense List</h2>
+    <table class="billing-table-expenses">
+        <thead>
+            <tr>
+                <th data-lang="expense_name">Expense Name</th>
+                <th data-lang="expense_amount">Amount ($)</th>
+                <th data-lang="expense_month">Month</th>
+                <th data-lang="action">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in expenses %}
+            <tr>
+                <td>{{ expense.name }}</td>
+                <td>${{ expense.amount }}</td>
+                <td>{{ expense.month }}</td>
+                <td>
+                    <form action="/delete_expense/{{ expense._id }}" method="POST" style="display:inline;">
+                        <button type="submit" class="delete-btn-expenses" data-lang="delete">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+<script src="{{ url_for('static', filename='js/language.js') }}"></script>
+{% endblock %}

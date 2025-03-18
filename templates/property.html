@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Property{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/property.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="container-property">
+        <h2>Property Management</h2>
+        <p>Manage your properties efficiently.</p>
+
+        <!-- Add Property Form -->
+        <div class="property-form-property">
+            <h3>Add New Property</h3>
+            <form id="propertyForm-property">
+                <label for="propertyName-property">Property Name:</label>
+                <input type="text" id="propertyName-property" required>
+
+                <label for="propertyType-property">Type:</label>
+                <select id="propertyType-property">
+                    <option>Apartment</option>
+                    <option>Villa</option>
+                    <option>Commercial</option>
+                    <option>Other</option>
+                </select>
+
+                <label for="propertyCity-property">City:</label>
+                <input type="text" id="propertyCity-property" required>
+
+                <label for="propertyAddress-property">Address:</label>
+                <textarea id="propertyAddress-property" required></textarea>
+
+                <button type="submit" class="submit-btn-property">Save Property</button>
+            </form>
+        </div>
+
+        <!-- Display Saved Properties -->
+        <h3>Saved Properties</h3>
+        <div id="propertyList-property" class="property-list-property">
+            {% for property in properties %}
+            <div class="property-card-property">
+                <h3>{{ property.name }}</h3>
+                <p><b>Type:</b> {{ property.type }}</p>
+                <p><b>City:</b> {{ property.city }}</p>
+                <p><b>Address:</b> {{ property.address }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/property.js') }}"></script>
+{% endblock %}

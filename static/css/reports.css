@@ -1,0 +1,124 @@
+/* ===== Reports Under Construction Page Styles ===== */
+
+/* General Page Styles */
+body {
+    background-color: #0A192F; /* Dark background */
+    color: #CCD6F6;            /* Light text */
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Under Construction Container */
+.report-underconstruction {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Card Styling */
+.report-card {
+    background: #112240;
+    padding: 40px 50px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    width: 100%;
+    
+    /* Center text content both horizontally and vertically */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Heading Styling */
+.report-card h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #64FFDA;
+}
+
+/* Paragraph Styling */
+.report-card p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Loader Animation */
+.loader {
+    border: 8px solid #f3f3f3;         /* Light grey background */
+    border-top: 8px solid #64FFDA;       /* Accent color */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+/* Keyframes for Loader */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ===== Responsive Adjustments ===== */
+
+/* For screens below 768px */
+@media (max-width: 768px) {
+    .report-card {
+        padding: 30px 40px;
+    }
+    
+    .report-card h1 {
+        font-size: 2.2rem;
+    }
+    
+    .report-card p {
+        font-size: 1.1rem;
+    }
+    
+    .loader {
+        width: 50px;
+        height: 50px;
+        border-width: 6px;
+    }
+}
+
+/* For screens below 480px */
+@media (max-width: 480px) {
+    .report-card {
+        padding: 20px 20px;
+    }
+    
+    .report-card h1 {
+        font-size: 2rem;
+    }
+    
+    .report-card p {
+        font-size: 1rem;
+    }
+    
+    .loader {
+        width: 40px;
+        height: 40px;
+        border-width: 5px;
+    }
+}
+.report-underconstruction {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;  /* Align items to the top */
+    min-height: 80vh;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Optional: Add some top margin to the report card to create spacing from the navbar */
+.report-card {
+    margin-top: 40px;  /* Adjust as needed */
+}
+

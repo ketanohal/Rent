@@ -1,0 +1,227 @@
+/* ===== Add Unit Page Styles ===== */
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+/* Menu Toggle Button */
+.menu-toggle-unit {
+    position: absolute;
+    top: 10px;
+    left: 260px;
+    font-size: 20px;
+    cursor: pointer;
+    background: #2c3e50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* Dashboard Container – Horizontally Centered on Large Screens */
+.dashboard-container-unit {
+    margin: 80px auto 0 !important;  /* Top margin and auto horizontal centering */
+    max-width: 1200px;
+    width: 90%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Report Container (Form & Units Table Container) */
+.report-container-unit {
+    background: #0e223f;
+    border-radius: 10px;
+    padding: 25px 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+    width: 100%;
+    max-width: 800px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.report-container-unit h2 {
+    font-size: 1.8rem;
+    color: #64FFDA;
+    margin-bottom: 10px;
+}
+
+/* ===== Add Unit Form ===== */
+.unit-form-unit {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+/* Form Group */
+.filter-options-unit {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto -15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.filter-options-unit label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #64FFDA;  /* Stylish light blue accent */
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+/* Input & Select Fields */
+.input-unit {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #64FFDA;
+    border-radius: 5px;
+    background: #fff;
+    color: #333;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+/* Submit Button */
+.submit-btn-unit {
+    background: #2980b9;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    max-width: 250px;
+    margin: 0 auto;
+    display: block;
+    transition: background 0.3s;
+}
+
+.submit-btn-unit:hover {
+    background: #1c6ea4;
+}
+
+/* ===== Vacant Units Table ===== */
+.units-table-unit {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 30px auto 0;
+}
+
+.units-table-unit th,
+.units-table-unit td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.units-table-unit th {
+    background: #2c3e50;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.units-table-unit td {
+    background: #f8f9fa;
+    color: #333;
+    font-size: 1rem;
+}
+
+.units-table-unit tr:nth-child(even) td {
+    background: #e9ecef;
+}
+
+/* ===== Responsive Adjustments ===== */
+
+/* For screens below 768px */
+@media (max-width: 768px) {
+    .dashboard-container-unit {
+        margin-left: 0;
+        width: 95%;
+        padding: 15px;
+    }
+    
+    .menu-toggle-unit {
+        left: 10px;
+    }
+    
+    .report-container-unit {
+        margin: 15px auto;
+        padding: 20px;
+        max-width: 100%;
+    }
+    
+    .report-container-unit h2 {
+        font-size: 1.6rem;
+    }
+    
+    .filter-options-unit label {
+        font-size: 0.9rem;
+    }
+    
+    .input-unit {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+    
+    .submit-btn-unit {
+        max-width: 100%;
+        padding: 8px 10px;
+        font-size: 0.95rem;
+    }
+    
+    .units-table-unit th,
+    .units-table-unit td {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+}
+
+/* For screens below 480px */
+@media (max-width: 480px) {
+    .dashboard-container-unit {
+        width: 100%;
+        padding: 10px;
+        margin-top: 70px;
+    }
+    
+    .report-container-unit {
+        padding: 15px;
+        margin-top: -90px;
+
+    }
+    
+    .report-container-unit h2 {
+        font-size: 20px;
+    }
+    
+    .filter-options-unit label {
+        font-size: 0.85rem;
+    }
+    
+    .input-unit {
+        padding: 6px;
+        font-size: 0.85rem;
+    }
+    
+    .submit-btn-unit {
+        padding: 6px 8px;
+        font-size: 0.9rem;
+    }
+    
+    .units-table-unit th,
+    .units-table-unit td {
+        padding: 6px;
+        font-size: 0.8rem;
+    }
+}
