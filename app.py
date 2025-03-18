@@ -6,13 +6,13 @@ from datetime import datetime
 import os
 from flask_cors import CORS
 
-
 app = Flask(__name__)
 CORS(app)  # Enable CORS if your frontend is separate
 app.secret_key = 'your_secret_key'  # For session management
 
 # MongoDB Connection
-client = MongoClient("mongodb+srv://ohalketan123:yJ82N5U9yaCJMb8T@cluster0.gkkpd.mongodb.net/")
+MONGO_URI = os.getenv("MONGO_URI")  # Fetching the URI from environment variable
+client = MongoClient(MONGO_URI)
 db = client['rentease']  # Database name
 users_collection = db['users']  # Users Collection
 properties_collection = db['properties']  # Properties Collection
@@ -20,6 +20,7 @@ tenants_collection = db['tenants']  # Tenants Collection
 electricity_bills_collection = db['electricity_bills']  # Collection for storing electricity bills
 rent_collection = db["rent"]  # Collection storing rent details ✅ ADDED THIS
 expenses_collection = db["expenses"]
+
 
 
 
