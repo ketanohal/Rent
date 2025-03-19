@@ -1,38 +1,38 @@
 {% extends 'base.html' %}
 
-{% block title %}Tenant Details{% endblock %}
+{% block title %}<span data-lang="tenant-details">Tenant Details</span>{% endblock %}
 
 {% block head %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/tenants.css') }}">
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h2>Tenant Details</h2>
-        <div class="tenant-details">
-            <p><strong>Name:</strong> {{ tenant.name }}</p>
-            <p><strong>Phone Number:</strong> {{ tenant.phone_number }}</p>
-            <p><strong>Alternate Phone:</strong> {{ tenant.alternate_phone }}</p>
-            <p><strong>Unit Type:</strong> {{ tenant.unit_type }}</p>
-            <p><strong>Deposit Amount:</strong> ₹{{ tenant.deposit_amount }}</p>
-            <p><strong>Rent Amount:</strong> ₹{{ tenant.rent_amount }}</p>
-            <p><strong>Lease Start Date:</strong> {{ tenant.lease_start_date.strftime('%Y-%m-%d') }}</p>
-            <p><strong>Rent Due Date:</strong> {{ tenant.rent_due_date }}</p>
-            <p><strong>Notes:</strong> {{ tenant.notes }}</p>
+    <div class="container-tenantdetails">
+        <h2 data-lang="tenant-details">Tenant Details</h2>
+        <div class="tenant-details-tenantdetails">
+            <p><strong data-lang="tenant-name">Name:</strong> <span id="tenant-name-tenantdetails">{{ tenant.name }}</span></p>
+            <p><strong data-lang="phone-number">Phone Number:</strong> <span id="phone-number-tenantdetails">{{ tenant.phone_number }}</span></p>
+            <p><strong data-lang="alt-phone-number">Alternate Phone:</strong> <span id="alt-phone-number-tenantdetails">{{ tenant.alternate_phone }}</span></p>
+            <p><strong data-lang="unit-type">Unit Type:</strong> <span id="unit-type-tenantdetails">{{ tenant.unit_type }}</span></p>
+            <p><strong data-lang="deposit-amount">Deposit Amount:</strong> ₹<span id="deposit-amount-tenantdetails">{{ tenant.deposit_amount }}</span></p>
+            <p><strong data-lang="rent-amount">Rent Amount:</strong> ₹<span id="rent-amount-tenantdetails">{{ tenant.rent_amount }}</span></p>
+            <p><strong data-lang="lease-start-date">Lease Start Date:</strong> <span id="lease-start-date-tenantdetails">{{ tenant.lease_start_date.strftime('%Y-%m-%d') }}</span></p>
+            <p><strong data-lang="rent-due-date">Rent Due Date:</strong> <span id="rent-due-date-tenantdetails">{{ tenant.rent_due_date }}</span></p>
+            <p><strong data-lang="notes">Notes:</strong> <span id="notes-tenantdetails">{{ tenant.notes }}</span></p>
 
-            <h3>Rent Summary</h3>
+            <h3 data-lang="rent-summary">Rent Summary</h3>
 
             {% if rent_history %}
-                <div class="rent-summary">
-                    <p><strong>Total Rent Paid:</strong> <span class="total-rent">₹{{ total_rent_paid }}</span></p>
+                <div class="rent-summary-tenantdetails">
+                    <p><strong data-lang="total-rent-paid">Total Rent Paid:</strong> <span class="total-rent-tenantdetails">₹{{ total_rent_paid }}</span></p>
                 </div>
 
-                <table class="rent-table">
+                <table class="rent-table-tenantdetails">
                     <thead>
                         <tr>
-                            <th>Month</th>
-                            <th>Electricity Bill (₹)</th>
-                            <th>Total Rent (₹)</th>
+                            <th data-lang="month">Month</th>
+                            <th data-lang="electricity-bill">Electricity Bill (₹)</th>
+                            <th data-lang="total-rent">Total Rent (₹)</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,10 +46,49 @@
                     </tbody>
                 </table>
             {% else %}
-                <p class="no-rent">No rent records found for this tenant.</p>
+                <p class="no-rent-tenantdetails" data-lang="no-rent-records">No rent records found for this tenant.</p>
             {% endif %}
 
-            <a href="{{ url_for('tenants') }}" class="back-btn">Back to List</a>
+            <a href="{{ url_for('tenants') }}" class="back-btn-tenantdetails" data-lang="back-to-list">Back to List</a>
+        </div>
+
+        <!-- ✅ Document Links with Data-Lang Support -->
+        <div class="filter-options-tenantdetails">
+            <label data-lang="aadhaar-card">Aadhaar Card:</label>
+            <a href="/get_document/{{ tenant.documents.aadhaar_document }}" target="_blank" class="doc-link-tenantdetails" data-lang="view-aadhaar">View Aadhaar</a>
+        </div>
+
+        <div class="filter-options-tenantdetails">
+            <label data-lang="pan-card">PAN Card:</label>
+            <a href="/get_document/{{ tenant.documents.pan_document }}" target="_blank" class="doc-link-tenantdetails" data-lang="view-pan">View PAN</a>
+        </div>
+
+        <div class="filter-options-tenantdetails">
+            <label data-lang="photo">Photo:</label>
+            <a href="/get_document/{{ tenant.documents.photo_document }}" target="_blank" class="doc-link-tenantdetails" data-lang="view-photo">View Photo</a>
         </div>
     </div>
+
+    <!-- ✅ JavaScript to Refresh Only Tenant Details -->
+    <script>
+        document.addEventListener("visibilitychange", function () {
+            if (document.visibilityState === "visible") {
+                console.log("Tab is active again. Refreshing data...");
+
+                // Reload only tenant details without full page reload
+                fetch(window.location.href)
+                    .then(response => response.text())
+                    .then(html => {
+                        let parser = new DOMParser();
+                        let doc = parser.parseFromString(html, "text/html");
+
+                        // Update only the necessary content
+                        document.querySelector(".tenant-details-tenantdetails").innerHTML = 
+                            doc.querySelector(".tenant-details-tenantdetails").innerHTML;
+                    })
+                    .catch(error => console.error("Error refreshing data:", error));
+            }
+        });
+    </script>
+
 {% endblock %}

@@ -22,6 +22,12 @@ body {
     text-align: center;
     display: none; /* Initially hidden */
 }
+#loading-animation p {
+    margin-top: 10px; /* Moves the text down */
+    font-size: 1.2rem;
+    color: #64FFDA;
+    font-weight: bold;
+}
 
 /* 🌟 Pulsating Neon Circle */
 .loader-container {

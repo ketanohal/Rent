@@ -1,38 +1,52 @@
-import logging
-logging.getLogger('pymongo').setLevel(logging.WARNING)
-from dotenv import load_dotenv
-load_dotenv()
-from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
-from bson import ObjectId
-from pymongo import MongoClient
-from werkzeug.security import generate_password_hash, check_password_hash
-from datetime import datetime
 import os
-from flask_cors import CORS
 import logging
+from datetime import datetime
+from io import BytesIO
 
-# Enable logging
-logging.basicConfig(level=logging.DEBUG)
+from flask import (
+    Flask, render_template, request, redirect, url_for,
+    session, flash, jsonify, send_file, Response
+)
+from flask_cors import CORS
+from dotenv import load_dotenv
+from pymongo import MongoClient
+from bson import ObjectId
+import gridfs
+from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
+
+# Load environment variables
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
-app.secret_key = 'your_secret_key'  # For session management
+app.secret_key = os.getenv("SECRET_KEY", "fallback_secret")  # Fetch secret key securely
 
 # MongoDB Connection
-MONGO_URI = os.getenv("MONGO_URI")  # Fetching the URI from environment variables
-client = MongoClient(MONGO_URI)
-db = client['rentease']  # Database name
-users_collection = db['users']  # Users Collection
-properties_collection = db['properties']  # Properties Collection
-tenants_collection = db['tenants']  # Tenants Collection
-electricity_bills_collection = db['electricity_bills']  # Collection for storing electricity bills
-rent_collection = db["rent"]  # Collection storing rent details ✅ ADDED THIS
+MONGO_URI = os.getenv("MONGO_URI")
+try:
+    client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000)  # Timeout after 5s
+    client.server_info()  # Force connection to check for errors
+except Exception as e:
+    logging.error(f"MongoDB Connection Error: {e}")
+    exit(1)
+
+# Database & Collections
+db = client['rentease']
+users_collection = db['users']
+properties_collection = db['properties']
+tenants_collection = db['tenants']
+electricity_bills_collection = db['electricity_bills']
+rent_collection = db["rent"]
 expenses_collection = db["expenses"]
 
+# Initialize GridFS
+fs = gridfs.GridFS(db)
 
-
-UPLOAD_FOLDER = '/tmp/uploads'
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+# File Upload Validation
+def allowed_file(filename):
+    allowed_extensions = {"pdf", "jpg", "jpeg", "png"}
+    return "." in filename and filename.rsplit(".", 1)[1].lower() in allowed_extensions
 
 
 @app.route('/')
@@ -250,8 +264,6 @@ def add_unit():
 
     units = list(properties_collection.find({}, {"_id": 0}))
     return render_template('add_unit.html', units=units)
-
-
 @app.route("/add_tenant", methods=["GET", "POST"])
 def add_tenant():
     if 'username' not in session:
@@ -263,38 +275,68 @@ def add_tenant():
         phone_number = request.form.get("phone")
         unit_type = request.form.get("unit_type")
         room_number = int(request.form.get("room_number"))
-        rent_amount = request.form.get("rent")
+        deposit_amount = float(request.form.get("deposit"))
+        rent_amount = float(request.form.get("rent"))
         lease_start_date = request.form.get("lease_date")
+        rent_due_date = request.form.get("rent_due_date")
+        initial_meter_reading = int(request.form.get("initial_meter_reading", 0))
+        notes = request.form.get("notes")
 
-        if not name or not phone_number or not unit_type or not room_number or not rent_amount or not lease_start_date:
-            flash("Mandatory fields are missing!", "danger")
-            return redirect(url_for("add_tenant"))
+        # ✅ Handle File Uploads
+        aadhaar_file = request.files.get("aadhaar_document")
+        pan_file = request.files.get("pan_document")
+        photo_file = request.files.get("photo_document")
 
-        unit_data = properties_collection.find_one({"unit_type": unit_type})
-        if not unit_data or room_number not in unit_data.get("room_numbers", []) or room_number in unit_data.get("assigned_rooms", []):
-            flash("Selected room is no longer available.", "danger")
-            return redirect(url_for("add_tenant"))
+        # Upload files to GridFS and get their IDs
+        documents = {}
+        if aadhaar_file:
+            documents["aadhaar_document"] = fs.put(aadhaar_file, filename=aadhaar_file.filename)
+        if pan_file:
+            documents["pan_document"] = fs.put(pan_file, filename=pan_file.filename)
+        if photo_file:
+            documents["photo_document"] = fs.put(photo_file, filename=photo_file.filename)
 
-        tenants_collection.insert_one({
+        # ✅ Store Tenant Details in MongoDB
+        tenant_id = tenants_collection.insert_one({
             "name": name,
             "phone_number": phone_number,
             "unit_type": unit_type,
             "room_number": room_number,
             "rent_amount": rent_amount,
+            "deposit_amount": deposit_amount,
             "lease_start_date": datetime.strptime(lease_start_date, "%Y-%m-%d"),
+            "rent_due_date": datetime.strptime(rent_due_date, "%Y-%m-%d"),
+            "initial_meter_reading": initial_meter_reading,
+            "notes": notes,
+            "documents": documents,  # Store GridFS file IDs
             "created_at": datetime.utcnow(),
-        })
+        }).inserted_id
 
-        properties_collection.update_one(
-            {"unit_type": unit_type},
-            {"$pull": {"room_numbers": room_number}, "$push": {"assigned_rooms": room_number}}
-        )
-
-        flash("Tenant added successfully!", "success")
+        flash("Tenant added successfully with uploaded documents!", "success")
         return redirect(url_for("add_tenant"))
 
     units = list(properties_collection.find({}, {"unit_type": 1, "room_numbers": 1}))
     return render_template("add_tenant.html", units=units)
+
+
+@app.route("/get_document/<document_id>")
+def get_document(document_id):
+    try:
+        # Fetch file from GridFS
+        file_data = fs.get(ObjectId(document_id))
+
+        # Extract MIME type and filename (if available)
+        content_type = file_data.content_type if hasattr(file_data, 'content_type') else "application/octet-stream"
+        file_name = file_data.filename if hasattr(file_data, 'filename') else "file"
+
+        # ✅ Set both `mimetype` and `download_name`
+        return send_file(BytesIO(file_data.read()), mimetype=content_type, download_name=file_name, as_attachment=False)
+
+    except gridfs.errors.NoFile:
+        return "Document not found", 404
+
+    except Exception as e:
+        return f"Error: {str(e)}", 500
 
 
 @app.route("/get_rooms")
@@ -337,7 +379,6 @@ def tenant_details(tenant_id):
 
     return render_template('tenant_details.html', tenant=tenant, rent_history=rent_history, total_rent_paid=total_rent_paid)
 
-
 @app.route('/electricity_bill', methods=['GET', 'POST'])
 def electricity_bill():
     if 'username' not in session:
@@ -363,17 +404,22 @@ def electricity_bill():
         current_reading = int(request.form.get('current_reading'))
         rate_per_unit = float(request.form.get('rate_per_unit'))
 
-        # Fetch last recorded reading (only for past months)
+        # ✅ Fetch last recorded reading OR initial reading if no previous bill
         last_bill = electricity_bills_collection.find_one(
             {"tenant_id": str(tenant_id), "month": {"$lt": month}},
             sort=[("month", -1)]
         )
-        last_reading = last_bill['current_reading'] if last_bill else 0
+        if last_bill:
+            last_reading = last_bill["current_reading"]
+        else:
+            # Use initial meter reading from first entry
+            initial_bill = electricity_bills_collection.find_one({"tenant_id": str(tenant_id)})
+            last_reading = initial_bill["current_reading"] if initial_bill else 0
 
-        units_consumed = current_reading - last_reading
+        units_consumed = max(0, current_reading - last_reading)  # Ensure no negative values
         total_bill = units_consumed * rate_per_unit
 
-        # Save electricity bill
+        # ✅ Save electricity bill
         electricity_bills_collection.update_one(
             {"tenant_id": str(tenant_id), "month": month},
             {"$set": {
@@ -387,10 +433,10 @@ def electricity_bill():
                 "rate_per_unit": rate_per_unit,
                 "total_bill": total_bill
             }},
-            upsert=True  # Create new record if not exists
+            upsert=True
         )
 
-        # Fetch tenant rent and update total rent
+        # ✅ Update rent history with new bill
         rent_amount = float(tenant.get("rent_amount", 0))
         total_rent = rent_amount + total_bill
 
@@ -409,34 +455,40 @@ def electricity_bill():
         flash("Electricity bill recorded and rent updated successfully!", "success")
         return redirect(url_for('electricity_bill'))
 
-    # 🔹 Get selected filters from query params
+    # ✅ Fetch available months
+    all_months = sorted(
+        {bill["month"] for bill in electricity_bills_collection.find({}, {"month": 1})},
+        reverse=True
+    )
+
+    # ✅ Get selected filters from query params
     selected_month = request.args.get('month', '')  # Selected month filter
     selected_tenant = request.args.get('tenant_filter', '')  # Selected tenant filter
 
-    # 🔹 Build query dynamically based on filters
+    # ✅ Build query dynamically based on filters
     query = {}
     if selected_month:
         query["month"] = selected_month
     if selected_tenant:
         query["tenant_id"] = selected_tenant  # Keep tenant_id as a string for filtering
 
-    # 🔹 Fetch filtered bills and sort by month in descending order
+    # ✅ Fetch filtered bills and sort by month in descending order
     bills = list(electricity_bills_collection.find(query).sort("month", -1))
 
-    # 🔹 Get all available months for filtering (also sorted in descending order)
-    all_months = sorted(
-        {bill["month"] for bill in electricity_bills_collection.find({}, {"month": 1})},
-        reverse=True
-    )
+    # ✅ Print debug info
+    print("Selected Month:", selected_month)
+    print("Selected Tenant:", selected_tenant)
+    print("Fetched Bills:", bills)  # Debug: Check if bills are fetched correctly
 
     return render_template(
         'electricity_bill.html',
         tenants=tenants,
-        bills=bills,
+        bills=bills,  # ✅ Ensure bills are passed to the template
         all_months=all_months,
         selected_month=selected_month,
         selected_tenant=selected_tenant
     )
+
 
 @app.route('/calculate_total_rent', methods=['POST'])
 def calculate_total_rent():

@@ -1,0 +1,156 @@
+
+
+/* 🌟 Container for Tenant Details */
+.container-tenantdetails {
+    max-width: 95%;
+    margin: 10px auto;
+    padding: 20px;
+    background: var(--secondary-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 255, 255, 0.2);
+    text-align: center;
+}
+
+/* 🏷️ Title */
+.container-tenantdetails h2 {
+    color: var(--accent-color);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+/* 🔹 Tenant Details Section */
+.tenant-details-tenantdetails {
+    text-align: left;
+    padding: 15px;
+    border-radius: 10px;
+    background: var(--primary-bg);
+    box-shadow: 0px 4px 8px rgba(0, 255, 255, 0.1);
+    margin-bottom: 15px;
+}
+
+/* 🖼️ Tenant Image */
+.tenant-image-tenantdetails {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent-color);
+    display: block;
+    margin: 10px auto;
+}
+
+/* 📄 Labels & Text */
+.tenant-details-tenantdetails p {
+    font-size: 1rem;
+    margin: 8px 0;
+    color: var(--text-color);
+}
+
+.tenant-details-tenantdetails strong {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+/* 📋 Rent Summary */
+.rent-summary-tenantdetails {
+    background: var(--highlight-bg);
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+/* 📊 Rent Table */
+.rent-table-tenantdetails {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+.rent-table-tenantdetails th,
+.rent-table-tenantdetails td {
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    text-align: center;
+}
+
+.rent-table-tenantdetails th {
+    background: var(--highlight-bg);
+    color: var(--accent-color);
+}
+
+.rent-table-tenantdetails tr:nth-child(even) {
+    background: #0F223B;
+}
+
+/* 🔙 Back Button */
+.back-btn-tenantdetails {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 20px;
+    background: var(--button-bg);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.back-btn-tenantdetails:hover {
+    background: var(--button-hover);
+}
+
+/* 📁 Document Links */
+.filter-options-tenantdetails {
+    margin: 15px 0;
+    text-align: center;
+}
+
+.filter-options-tenantdetails label {
+    font-size: 1rem;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.doc-link-tenantdetails {
+    display: block;
+    margin-top: 5px;
+    padding: 8px 15px;
+    background: var(--accent-color);
+    color: #112240;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.doc-link-tenantdetails:hover {
+    background: #00D9A3;
+}
+
+/* 📱 Mobile Optimization */
+@media (max-width: 768px) {
+    .container-tenantdetails {
+        padding: 15px;
+    }
+
+    .tenant-details-tenantdetails p {
+        font-size: 0.9rem;
+    }
+
+    .rent-table-tenantdetails th,
+    .rent-table-tenantdetails td {
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+
+    .back-btn-tenantdetails {
+        width: 100%;
+        text-align: center;
+    }
+
+    .tenant-image-tenantdetails {
+        width: 100px;
+        height: 100px;
+    }
+}

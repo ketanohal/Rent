@@ -8,21 +8,23 @@
             <h2 data-lang="add_tenant">Add Tenant</h2>
             <form action="{{ url_for('add_tenant') }}" method="post" enctype="multipart/form-data" class="tenant-form-tenant">
 
+                <!-- Tenant Name -->
                 <div class="filter-options-tenant">
                     <label for="tenant-name-tenant" data-lang="tenant_name">Tenant Name:</label>
                     <input type="text" id="tenant-name-tenant" name="tenant_name" class="input-tenant" required>
                 </div>
 
+                <!-- Phone Numbers -->
                 <div class="filter-options-tenant">
                     <label for="phone-tenant" data-lang="phone_number">Phone Number:</label>
                     <input type="tel" id="phone-tenant" name="phone" class="input-tenant" required>
                 </div>
-
                 <div class="filter-options-tenant">
                     <label for="alt-phone-tenant" data-lang="alt_phone_number">Alternate Phone Number:</label>
                     <input type="tel" id="alt-phone-tenant" name="alt_phone" class="input-tenant">
                 </div>
 
+                <!-- Unit Selection -->
                 <div class="filter-options-tenant">
                     <label for="unit-type-tenant" data-lang="select_unit_type">Select Unit Type:</label>
                     <select id="unit-type-tenant" name="unit_type" class="select-tenant" required>
@@ -32,7 +34,6 @@
                         {% endfor %}
                     </select>
                 </div>
-
                 <div class="filter-options-tenant">
                     <label for="room-number-tenant" data-lang="select_room_number">Select Room Number:</label>
                     <select id="room-number-tenant" name="room_number" class="select-tenant" required>
@@ -40,34 +41,52 @@
                     </select>
                 </div>
 
+                <!-- Rent & Deposit -->
                 <div class="filter-options-tenant">
                     <label for="deposit-tenant" data-lang="deposit_amount">Deposit Amount:</label>
                     <input type="number" id="deposit-tenant" name="deposit" class="input-tenant" required>
                 </div>
-
                 <div class="filter-options-tenant">
                     <label for="rent-tenant" data-lang="rent_amount">Rent Amount (Per Month):</label>
                     <input type="number" id="rent-tenant" name="rent" class="input-tenant" required>
                 </div>
 
+                <!-- Lease Dates -->
                 <div class="filter-options-tenant">
                     <label for="lease-date-tenant" data-lang="lease_start_date">Lease Start Date:</label>
                     <input type="date" id="lease-date-tenant" name="lease_date" class="input-tenant" required>
                 </div>
-
                 <div class="filter-options-tenant">
                     <label for="rent-due-date-tenant" data-lang="rent_due_date">Rent Due Date:</label>
                     <input type="date" id="rent-due-date-tenant" name="rent_due_date" class="input-tenant" required>
                 </div>
 
+                <!-- Initial Meter Reading -->
+                <div class="filter-options-tenant">
+                    <label for="initial-meter-reading" data-lang="initial_meter_reading">Initial Meter Reading:</label>
+                    <input type="number" id="initial-meter-reading" name="initial_meter_reading" class="input-tenant" required>
+                </div>
+
+                <!-- Notes -->
                 <div class="filter-options-tenant">
                     <label for="notes-tenant" data-lang="notes">Notes:</label>
                     <textarea id="notes-tenant" name="notes" rows="3" class="textarea-tenant"></textarea>
                 </div>
 
-                <div class="filter-options-tenant">
-                    <label for="documents-tenant" data-lang="upload_documents">Upload Documents (PDF, Images):</label>
-                    <input type="file" id="documents-tenant" name="documents" accept=".pdf, .jpg, .jpeg, .png" multiple class="input-tenant">
+                <!-- File Uploads (Aadhaar, PAN, Photo) -->
+                <div class="file-upload-container">
+                    <div class="file-upload-box">
+                        <label for="aadhaar-document" data-lang="upload_aadhaar">Upload Aadhaar Card:</label>
+                        <input type="file" id="aadhaar-document" name="aadhaar_document" accept=".pdf, .jpg, .jpeg, .png" class="input-tenant" required>
+                    </div>
+                    <div class="file-upload-box">
+                        <label for="pan-document" data-lang="upload_pan">Upload PAN Card:</label>
+                        <input type="file" id="pan-document" name="pan_document" accept=".pdf, .jpg, .jpeg, .png" class="input-tenant" required>
+                    </div>
+                    <div class="file-upload-box">
+                        <label for="photo-document" data-lang="upload_photo">Upload Photo:</label>
+                        <input type="file" id="photo-document" name="photo_document" accept=".jpg, .jpeg, .png" class="input-tenant" required>
+                    </div>
                 </div>
 
                 <button type="submit" class="submit-btn-tenant" data-lang="submit">Submit</button>
@@ -75,6 +94,7 @@
         </div>
     </div>
 
+    <!-- Scripts -->
     <script src="{{ url_for('static', filename='js/language.js') }}"></script>
     <script>
         document.getElementById("unit-type-tenant").addEventListener("change", function () {
@@ -93,4 +113,17 @@
                 });
         });
     </script>
+
+    <!-- CSS to improve file input layout -->
+    <style>
+        .file-upload-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .file-upload-box {
+            flex: 1;
+            min-width: 250px;
+        }
+    </style>
 {% endblock %}
