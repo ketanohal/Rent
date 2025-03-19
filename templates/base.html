@@ -19,24 +19,28 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/expenses.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/reports.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/rent_collection.css') }}">
-
-
 </head>
+
 <body>
+    <!-- 🌟 Global Futuristic Loading Animation -->
+    <div id="loading-animation">
+        <div class="loader"></div>
+        <p data-lang="loading">Loading...</p>
+    </div>
+
     <!-- Header Section -->
     <header>
         <div class="nav-container">
             <h1 class="logo" data-lang="company-name">RentEase</h1>
             <nav>
-                    {% if session.get('username') %}
-                        <span>
-                            <span id="greeting-text" data-lang="user-greeting">Hi</span>, 
-                            <span id="user-greeting">{{ session['username'] }}</span>
-                        </span>
-                        <a href="{{ url_for('dashboard') }}" id="nav-dashboard" data-lang="nav-dashboard">Dashboard</a>
-                        <a href="{{ url_for('logout') }}" id="nav-logout" data-lang="nav-logout">Logout</a>
-                    {% else %}
-            
+                {% if session.get('username') %}
+                    <span>
+                        <span id="greeting-text" data-lang="user-greeting">Hi</span>, 
+                        <span id="user-greeting">{{ session['username'] }}</span>
+                    </span>
+                    <a href="{{ url_for('dashboard') }}" id="nav-dashboard" data-lang="nav-dashboard">Dashboard</a>
+                    <a href="{{ url_for('logout') }}" id="nav-logout" data-lang="nav-logout">Logout</a>
+                {% else %}
                     <a href="/" id="nav-home" data-lang="nav-home">Home</a>
                     <a href="/login" id="nav-login" data-lang="nav-login">Login</a>
                     <a href="/register" id="nav-register" data-lang="nav-register">Register</a>
@@ -50,7 +54,6 @@
             </nav>
         </div>
     </header>
-    
 
     <!-- Dashboard Menu (Only for Logged-in Users) -->
     {% if session.get('username') %}
@@ -63,7 +66,6 @@
             <li><a href="/tenants" data-lang="tenant-list">📋 Tenant List</a></li>
             <li><a href="/expenses" data-lang="expenses">💸 Expenses</a></li>
             <li><a href="/reports" data-lang="reports">📊 Reports</a></li>
-
         </ul>
     </div>
     {% endif %}
@@ -75,5 +77,35 @@
 
     <!-- Scripts -->
     <script src="{{ url_for('static', filename='js/language.js') }}"></script>
+    <script>
+        // 🚀 Show/Hide Loading Animation
+        function showLoader() {
+            document.getElementById("loading-animation").style.display = "flex";
+        }
+
+        function hideLoader() {
+            document.getElementById("loading-animation").style.display = "none";
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            hideLoader();
+
+            // Apply loader effect on all internal links
+            document.querySelectorAll("a").forEach(link => {
+                link.addEventListener("click", function (event) {
+                    if (!this.href.startsWith("tel:") && !this.href.startsWith("sms:")) {
+                        showLoader();
+                    }
+                });
+            });
+
+            // Apply loader effect on form submission
+            document.querySelectorAll("form").forEach(form => {
+                form.addEventListener("submit", function () {
+                    showLoader();
+                });
+            });
+        });
+    </script>
 </body>
 </html>
