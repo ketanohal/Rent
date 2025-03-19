@@ -125,6 +125,22 @@ window.translations = window.translations || {
         "report_page": "Report Page",
         "under_construction": "This page is currently under construction.",
         "check_back_later": "Please check back later.",
+        "rent_collection": "Rent Collection",
+        "select_month": "Select Month",
+        "paid_tenants": "Paid Tenants",
+        "pending_tenants": "Pending Tenants",
+        "overdue_tenants": "Overdue Tenants",
+        "name": "Name",
+        "room_no": "Room No",
+        "phone": "Phone",
+        "total_rent": "Total Rent",
+        "paid_amount": "Paid Amount",
+        "balance": "Balance",
+        "action": "Action",
+        "update": "Update",
+        "no_paid_tenants": "⚠️ No tenants have paid rent yet.",
+        "no_pending_tenants": "⚠️ No pending tenants found.",
+        "no_overdue_tenants": "✅ No overdue tenants.",
         
         
         
@@ -255,6 +271,22 @@ window.translations = window.translations || {
         "report_page": "अहवाल पृष्ठ",
         "under_construction": "हे पृष्ठ सध्या बांधकामाच्या टप्प्यात आहे.",
         "check_back_later": "कृपया नंतर पुन्हा तपासा.",
+        "rent_collection": "भाडे संकलन",
+        "select_month": "महिना निवडा",
+        "paid_tenants": "भाडे भरलेले भाडेकरू",
+        "pending_tenants": "बकाया असलेले भाडेकरू",
+        "overdue_tenants": "मुदतीत न भरलेले भाडेकरू",
+        "name": "नाव",
+        "room_no": "खोली क्रमांक",
+        "phone": "फोन",
+        "total_rent": "एकूण भाडे",
+        "paid_amount": "भरलेली रक्कम",
+        "balance": "उर्वरित रक्कम",
+        "action": "क्रिया",
+        "update": "अपडेट करा",
+        "no_paid_tenants": "⚠️ अद्याप कोणत्याही भाडेकरूने भाडे भरलेले नाही.",
+        "no_pending_tenants": "⚠️ कोणतेही बकाया भाडेकरू सापडले नाहीत.",
+        "no_overdue_tenants": "✅ कोणतेही मुदतीत न भरलेले भाडेकरू नाहीत."
         
     
     }

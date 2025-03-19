@@ -483,6 +483,104 @@ def reports():
 
     return render_template('reports.html')
 
+from datetime import datetime, timedelta
+from bson.objectid import ObjectId
+
+@app.route('/rent_collection', methods=['GET', 'POST'])
+def rent_collection():
+    if 'username' not in session:
+        flash("Please log in first.", "danger")
+        return redirect(url_for('login'))
+
+    # Get selected month from query parameters
+    selected_month = request.args.get('month', datetime.today().strftime("%Y-%m"))  
+
+    tenants = list(tenants_collection.find({}))
+
+    paid_tenants = []
+    pending_tenants = []
+    overdue_tenants = []
+    today = datetime.today()
+    overdue_threshold = today - timedelta(days=5)
+
+    for tenant in tenants:
+        rent_record = next((r for r in tenant.get("rent_history", []) if r["month"] == selected_month), None)
+
+        if rent_record:
+            total_rent = rent_record["total_rent"]
+            paid_amount = rent_record.get("paid_amount", 0)  # Default to 0 if not available
+            remaining_balance = total_rent - paid_amount
+
+            tenant_data = {
+                "id": str(tenant["_id"]),
+                "name": tenant["name"],
+                "phone": tenant["phone_number"],
+                "room_number": tenant["room_number"],
+                "total_rent": total_rent,
+                "paid_amount": paid_amount,
+                "remaining_balance": remaining_balance
+            }
+
+            if remaining_balance == 0:
+                paid_tenants.append(tenant_data)
+            elif remaining_balance > 0 and datetime.strptime(rent_record["month"], "%Y-%m") > overdue_threshold:
+                pending_tenants.append(tenant_data)
+            else:
+                overdue_tenants.append(tenant_data)
+
+    available_months = sorted(
+        {r["month"] for t in tenants for r in t.get("rent_history", [])},
+        reverse=True
+    )
+
+    return render_template(
+        'rent_collection.html',
+        paid_tenants=paid_tenants,
+        pending_tenants=pending_tenants,
+        overdue_tenants=overdue_tenants,
+        available_months=available_months,
+        selected_month=selected_month
+    )
+    
+
+@app.route('/update_rent_payment', methods=['POST'])
+def update_rent_payment():
+    if 'username' not in session:
+        flash("Please log in first.", "danger")
+        return redirect(url_for('login'))
+
+    tenant_id = request.form.get('tenant_id')
+    month = request.form.get('month')
+    paid_amount = float(request.form.get('paid_amount'))
+
+    tenant = tenants_collection.find_one({"_id": ObjectId(tenant_id)})
+    if not tenant:
+        flash("Tenant not found!", "danger")
+        return redirect(url_for('rent_collection'))
+
+    rent_record = next((r for r in tenant.get("rent_history", []) if r["month"] == month), None)
+
+    if not rent_record:
+        flash("No rent record found for the selected month!", "danger")
+        return redirect(url_for('rent_collection'))
+
+    total_rent = rent_record["total_rent"]
+    previous_paid_amount = rent_record.get("paid_amount", 0)
+    new_paid_amount = previous_paid_amount + paid_amount
+    remaining_balance = total_rent - new_paid_amount
+
+    tenants_collection.update_one(
+        {"_id": ObjectId(tenant_id), "rent_history.month": month},
+        {"$set": {
+            "rent_history.$.paid_amount": new_paid_amount,
+            "rent_history.$.remaining_balance": remaining_balance
+        }}
+    )
+
+    flash(f"Payment updated! Remaining balance: ₹{remaining_balance}", "success")
+    return redirect(url_for('rent_collection', month=month))
+
+
 @app.route('/logout')
 def logout():
     session.clear()

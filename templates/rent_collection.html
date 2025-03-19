@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block title %}<span data-lang="rent_collection">Rent Collection</span>{% endblock %}
+
+{% block content %}
+    <div class="rentcollection-dashboard-container">
+
+        <h1 data-lang="rent_collection">Rent Collection</h1>
+
+        <!-- Filter by Month -->
+        <form method="GET" action="{{ url_for('rent_collection') }}">
+            <label for="rentcollection-month" data-lang="select_month">Select Month:</label>
+            <select name="month" id="rentcollection-month" onchange="this.form.submit()">
+                {% for month in available_months %}
+                    <option value="{{ month }}" {% if month == selected_month %} selected {% endif %}>
+                        {{ month }}
+                    </option>
+                {% endfor %}
+            </select>
+        </form>
+
+        <!-- Paid Tenants -->
+        <h2 data-lang="paid_tenants">Paid Tenants</h2>
+        {% if paid_tenants %}
+            <table class="rentcollection-rent-table">
+                <thead>
+                    <tr>
+                        <th data-lang="name">Name</th>
+                        <th data-lang="total_rent">Total Rent</th>
+                        <th data-lang="paid_amount">Paid Amount</th>
+                        <th data-lang="balance">Balance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tenant in paid_tenants %}
+                    <tr>
+                        <td>{{ tenant.name }}</td>
+                        <td>₹{{ tenant.total_rent }}</td>
+                        <td>₹{{ tenant.paid_amount }}</td>
+                        <td>₹{{ tenant.remaining_balance }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="no-data" data-lang="no_paid_tenants">⚠️ No tenants have paid rent yet.</p>
+        {% endif %}
+
+        <!-- Pending Tenants -->
+        <h2 data-lang="pending_tenants">Pending Tenants</h2>
+        {% if pending_tenants %}
+            <table class="rentcollection-rent-table">
+                <thead>
+                    <tr>
+                        <th data-lang="name">Name</th>
+                        <th data-lang="total_rent">Total Rent</th>
+                        <th data-lang="paid_amount">Paid Amount</th>
+                        <th data-lang="balance">Balance</th>
+                        <th data-lang="action">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tenant in pending_tenants %}
+                    <tr>
+                        <td>{{ tenant.name }}</td>
+                        <td>₹{{ tenant.total_rent }}</td>
+                        <td>₹{{ tenant.paid_amount }}</td>
+                        <td>₹{{ tenant.remaining_balance }}</td>
+                        <td>
+                            <form action="{{ url_for('update_rent_payment') }}" method="POST">
+                                <input type="hidden" name="tenant_id" value="{{ tenant.id }}">
+                                <input type="hidden" name="month" value="{{ selected_month }}">
+                                <input type="number" name="paid_amount" placeholder="Enter Amount" required>
+                                <button type="submit" class="rentcollection-update-btn" data-lang="update">Update</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="no-data" data-lang="no_pending_tenants">⚠️ No pending tenants found.</p>
+        {% endif %}
+
+        <!-- Overdue Tenants -->
+        <h2 data-lang="overdue_tenants">Overdue Tenants</h2>
+        {% if overdue_tenants %}
+            <table class="rentcollection-rent-table">
+                <thead>
+                    <tr>
+                        <th data-lang="name">Name</th>
+                        <th data-lang="total_rent">Total Rent</th>
+                        <th data-lang="paid_amount">Paid Amount</th>
+                        <th data-lang="balance">Balance</th>
+                        <th data-lang="action">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tenant in overdue_tenants %}
+                    <tr>
+                        <td>{{ tenant.name }}</td>
+                        <td>₹{{ tenant.total_rent }}</td>
+                        <td>₹{{ tenant.paid_amount }}</td>
+                        <td>₹{{ tenant.remaining_balance }}</td>
+                        <td>
+                            <form action="{{ url_for('update_rent_payment') }}" method="POST">
+                                <input type="hidden" name="tenant_id" value="{{ tenant.id }}">
+                                <input type="hidden" name="month" value="{{ selected_month }}">
+                                <input type="number" name="paid_amount" class="rentcollection-input" placeholder="Enter Amount" required>
+                                <button type="submit" class="rentcollection-update-btn" data-lang="update">Update</button>
+                            </form>                            
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="no-data" data-lang="no_overdue_tenants">✅ No overdue tenants.</p>
+        {% endif %}
+    </div>
+
+    <script src="{{ url_for('static', filename='js/language.js') }}"></script>
+{% endblock %}

@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/electricity_bill.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/expenses.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/reports.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/rent_collection.css') }}">
 
 
 </head>
@@ -55,13 +56,14 @@
     {% if session.get('username') %}
     <div class="dashboard-menu">
         <ul>
-            <li><a href="/property" data-lang="add-property">➕ Add Property</a></li>
+            <li><a href="/rent_collection" data-lang="rent_collection">➕ Rent Collection</a></li>
             <li><a href="/add_unit" data-lang="add_unit">🏢 Add Unit</a></li>
             <li><a href="/add_tenant" data-lang="add-tenant">👤 Add Tenant</a></li>
             <li><a href="/electricity_bill" data-lang="electricity_bill">⚡ Electricity</a></li>
             <li><a href="/tenants" data-lang="tenant-list">📋 Tenant List</a></li>
             <li><a href="/expenses" data-lang="expenses">💸 Expenses</a></li>
             <li><a href="/reports" data-lang="reports">📊 Reports</a></li>
+
         </ul>
     </div>
     {% endif %}

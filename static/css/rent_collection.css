@@ -1,0 +1,214 @@
+/* 🎨 Color Theme: Dark with Sky Blue Accent */
+:root {
+    --bg-color: #121212;          /* Dark Background */
+    --card-bg: #1a1a1a;           /* Section Background */
+    --primary-color: #00aaff;     /* Sky Blue Accent */
+    --secondary-color: #2a2a2a;   /* Darker Shade */
+    --text-color: #e0e0e0;        /* Light Text */
+    --table-header-bg: #0088cc;   /* Darker Blue */
+    --table-row-hover: #222;      /* Hover Effect */
+    --border-color: #444;         /* Borders */
+    --button-bg: #0077cc;         /* Button */
+    --button-hover-bg: #0055aa;
+    --input-bg: #202020;
+    --input-border: #00aaff;
+    --alert-text: #ff4d4d;
+}
+
+/* 🌍 Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* 🖥️ Body Styling */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* 🔲 Main Container */
+.rentcollection-dashboard-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 15px;
+    background: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* 🏷️ Titles */
+h1, h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+/* 🔽 Month Selector */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+label {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+select {
+    width: 100%;
+    max-width: 260px;
+    padding: 8px;
+    background: var(--input-bg);
+    color: var(--text-color);
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    text-align: center;
+}
+
+select:focus {
+    border-color: var(--primary-color);
+}
+
+/* 📋 Table Styling */
+.rentcollection-rent-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+/* 🏷️ Table Header */
+.rentcollection-rent-table th {
+    background: var(--table-header-bg);
+    color: white;
+    padding: 12px;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 5px 5px 0 0;
+}
+
+/* 📊 Table Cells */
+.rentcollection-rent-table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 13px;
+}
+
+/* 📌 Alternating Rows for Better Readability */
+.rentcollection-rent-table tbody tr:nth-child(odd) {
+    background-color: var(--secondary-color);
+}
+
+.rentcollection-rent-table tbody tr:hover {
+    background: var(--table-row-hover);
+}
+
+/* ⚠️ No Data Message */
+.no-data {
+    text-align: center;
+    color: var(--alert-text);
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* 📥 Input Fields */
+input[type="number"] {
+    width: 100%;
+    max-width: 250px;  /* Increased max-width from 160px to 250px */
+    padding: 8px;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    color: var(--text-color);
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+/* 📩 Input Focus */
+input[type="number"]:focus {
+    border-color: var(--primary-color);
+}
+
+/* 🔘 Buttons */
+.rentcollection-update-btn {
+    background: var(--button-bg);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 14px;
+    width: 100%;
+    max-width: 120px;
+}
+
+.rentcollection-update-btn:hover {
+    background: var(--button-hover-bg);
+}
+
+/* ✅ Better Form Layout in Table */
+.rentcollection-rent-table form {
+    display: flex;
+    flex-direction: column;  /* Updated to column layout so the input and button stack */
+    align-items: center;
+}
+
+/* 📱 Mobile Optimization */
+@media screen and (max-width: 500px) {
+    /* 📌 Prevent Table Overflow */
+    .rentcollection-rent-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    /* 🔲 Container Adjustments */
+    .rentcollection-dashboard-container {
+        padding: 10px;
+        max-width: 95%;
+    }
+
+    /* 📊 Table Font Adjustments */
+    .rentcollection-rent-table th,
+    .rentcollection-rent-table td {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    /* 🏷️ Titles Adjustments */
+    h1, h2 {
+        font-size: 16px;
+    }
+
+    /* 🛠️ Input & Button Adjustments */
+    input[type="number"] {
+        font-size: 12px;
+        padding: 6px;
+        max-width: 100%;  /* Full width on mobile */
+    }
+
+    .rentcollection-update-btn {
+        font-size: 12px;
+        padding: 6px 8px;
+        max-width: 100%;  /* Button takes full width on mobile */
+    }
+
+    /* 📥 Form Layout for Mobile */
+    .rentcollection-rent-table form {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
