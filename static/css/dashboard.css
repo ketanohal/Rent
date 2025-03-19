@@ -12,18 +12,17 @@ body {
 /* Dashboard Container */
 .dashboard-container-dashboard {
     margin: -35px auto 0;
-    max-width: 1200px;
-    width: 100%;
+    max-width: 1100px;
+    width: 95%;
     padding: 10px;
     box-sizing: border-box;
 }
 
 /* Report Containers */
 .report-container-dashboard {
-    background: #112240;
-    padding: 3px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background: #112240; /* Dark Blue */
+    padding: 15px;
+    border-radius: 12px;
     margin: 20px auto;
     text-align: center;
     width: 100%;
@@ -32,7 +31,7 @@ body {
 
 .report-container-dashboard h2 {
     font-size: 1.6rem;
-    color: #64FFDA;
+    color: #64AFFA; /* Sky Blue Accent */
     margin-bottom: 15px;
 }
 
@@ -44,7 +43,7 @@ body {
 
 .filter-options-dashboard label {
     font-size: 1rem;
-    color: #CCD6F6;
+    color: #A8C7FF; /* Light Blue */
     margin-right: 10px;
 }
 
@@ -53,45 +52,51 @@ body {
     padding: 8px;
     font-size: 1rem;
     border-radius: 5px;
-    border: 1px solid #64FFDA;
-    background: #1E293B;
-    color: #E0E7FF;
+    border: 1px solid #64AFFA; /* Sky Blue Border */
+    background: #1A2A3B; /* Dark Grayish Blue */
+    color: #E0F2FF;
+    outline: none;
+    transition: 0.3s;
+}
+
+#month-filter-dashboard:hover {
+    border-color: #88CCFF;
 }
 
 /* Report Boxes */
 .report-boxes-dashboard {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 15px;
     justify-content: center;
 }
 
 .report-box-dashboard {
-    flex: 1 1 250px;
-    background: #1E293B;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    flex: 1 1 260px;
+    background: #1A2A3B; /* Dark Grayish Blue */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow:0 4px 10px rgb(5 5 10 / 95%);
     text-align: center;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: 0.3s;
     margin: 10px;
 }
 
 .report-box-dashboard:hover {
     transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 15px rgba(0, 140, 255, 0.3);
 }
 
 .report-box-dashboard h4 {
     font-size: 1.2rem;
-    color: #64FFDA;
+    color: #64AFFA;
     margin-bottom: 10px;
 }
 
 .report-box-dashboard p {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: bold;
-    color: #E0E7FF;
+    color: #E0F2FF;
 }
 
 /* ===== Billing Table ===== */
@@ -101,49 +106,51 @@ body {
     margin-top: 20px;
     overflow-x: auto;
     display: block;
+    border-radius: 10px;
 }
 
 .billing-table-dashboard th,
 .billing-table-dashboard td {
-    padding: 12px;
+    padding: 10px;
     text-align: center;
-    border: 1px solid #333; /* Darker border for better contrast */
+    border-bottom: 1px solid #333;
 }
 
 .billing-table-dashboard th {
-    background-color: #1E293B;
-    color: #64FFDA;
+    background-color: #173A5E;
+    color: #64AFFA;
     font-size: 1.1rem;
 }
 
-/* Improved row contrast */
+/* Improved Row Contrast */
 .billing-table-dashboard tr:nth-child(even) {
-    background-color: #0F223B; /* Dark blueish tone for even rows */
+    background-color: #12233D; /* Darker Blue */
 }
 
 .billing-table-dashboard tr:nth-child(odd) {
-    background-color: #112240; /* Slightly darker than even rows */
+    background-color: #112240;
 }
 
-/* Row hover effect */
+/* Row Hover Effect */
 .billing-table-dashboard tr:hover {
-    background-color: #173A5E; /* Highlight row on hover */
+    background-color: #173A5E; /* Highlight Row */
+    transition: 0.2s;
 }
 
 /* ===== Status Colors ===== */
 .status-paid {
-    background-color: #28A745 !important; /* Traffic Light Green */
-    color: #E0E7FF !important;
+    background-color: #198754 !important; /* Professional Green */
+    color: #E0F2FF !important;
 }
 
 .status-pending {
-    background-color: #FFC107 !important; /* Traffic Light Yellow */
-    color: #112240 !important; /* Dark text for contrast */
+    background-color: #E0A800 !important; /* Soft Yellow */
+    color: #0A0F1A !important;
 }
 
 .status-overdue {
-    background-color: #DC3545 !important; /* Traffic Light Red */
-    color: #E0E7FF !important;
+    background-color: #D32F2F !important; /* Strong Red */
+    color: #E0F2FF !important;
 }
 
 /* Call & Message Buttons */
@@ -153,58 +160,65 @@ body {
     text-decoration: none;
     margin: 0 5px;
     cursor: pointer;
+    transition: 0.2s;
 }
 
 .call-btn-dashboard {
-    color: #00FF00;
+    color: #00FF99;
+}
+
+.call-btn-dashboard:hover {
+    color: #00CC77;
 }
 
 .message-btn-dashboard {
-    color: #0099FF;
+    color: #64AFFA;
+}
+
+.message-btn-dashboard:hover {
+    color: #88CCFF;
 }
 
 /* ===== Responsive Adjustments ===== */
 @media (max-width: 768px) {
     .billing-table-dashboard {
-        font-size: 0.9rem;
-        display: block;
+        font-size: 0.85rem;
         overflow-x: auto;
+        white-space: nowrap;
     }
 
     .billing-table-dashboard th,
     .billing-table-dashboard td {
         padding: 6px;
-        font-size: 0.85rem;
-        white-space: nowrap;
+        font-size: 0.8rem;
     }
 
     .report-boxes-dashboard {
         flex-wrap: wrap;
-        gap: 8px;
+        gap: 10px;
         justify-content: space-around;
     }
 
     .report-box-dashboard {
-        flex: 1 1 30%;
+        flex: 1 1 45%;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 8px;
+        padding: 10px;
     }
-}
+}   
 
 @media (max-width: 480px) {
     .billing-table-dashboard {
-        font-size: 0.8rem;
-        display: block;
+        font-size: 0.75rem;
         overflow-x: auto;
     }
 
     .billing-table-dashboard th,
     .billing-table-dashboard td {
         padding: 4px;
-        font-size: 0.75rem;
+        font-size: 0.7rem;
     }
 
     .report-boxes-dashboard {
@@ -213,8 +227,8 @@ body {
     }
 
     .report-box-dashboard {
-        width: 90%;
-        padding: 8px;
+        width: 95%;
+        padding: 12px;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -222,13 +236,11 @@ body {
     }
 
     .report-box-dashboard h4 {
-        font-size: 0.9rem;
-        margin: 0 10px;
+        font-size: 1rem;
     }
 
     .report-box-dashboard p {
-        font-size: 1rem;
+        font-size: 1.2rem;
         font-weight: bold;
-        margin: 0 10px;
     }
 }

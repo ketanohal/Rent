@@ -54,7 +54,7 @@
                 {% for tenant in paid_tenants %}
                 <tr class="status-paid">
                     <td>{{ tenant.name }}</td>
-                    <td data-lang="paid">Paid</td>
+                    <td><span data-lang="paid">Paid</span></td>
                     <td>₹{{ tenant.paid_amount }}</td>
                     <td>₹{{ tenant.remaining_balance }}</td>
                     <td>{{ tenant.month }}</td>
@@ -64,7 +64,10 @@
                 {% for tenant in pending_tenants %}
                 <tr class="status-pending">
                     <td>{{ tenant.name }}</td>
-                    <td data-lang="pending">Pending ({{ tenant.days_pending }} <span data-lang="days">days</span>)</td>
+                    <td>
+                        <span class="status-text" data-lang="pending">Pending</span>
+                        (<span class="days-text">{{ tenant.days_pending }}</span> <span data-lang="days">days</span>)
+                    </td>
                     <td>₹{{ tenant.paid_amount }}</td>
                     <td>₹{{ tenant.remaining_balance }}</td>
                     <td>{{ tenant.month }}</td>
@@ -74,7 +77,10 @@
                 {% for tenant in overdue_tenants %}
                 <tr class="status-overdue">
                     <td>{{ tenant.name }}</td>
-                    <td data-lang="overdue">Overdue ({{ tenant.days_overdue }} <span data-lang="days">days</span>)</td>
+                    <td>
+                        <span class="status-text" data-lang="overdue">Overdue</span>
+                        (<span class="days-text">{{ tenant.days_overdue }}</span> <span data-lang="days">days</span>)
+                    </td>
                     <td>₹{{ tenant.paid_amount }}</td>
                     <td>₹{{ tenant.remaining_balance }}</td>
                     <td>{{ tenant.month }}</td>

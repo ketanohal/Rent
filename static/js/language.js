@@ -308,42 +308,57 @@ window.translations = window.translations || {
         "paid": "भरलेली",
         "pending": "बाकी",
         "overdue": "मुदतीत",
-        
+
 
         
     
     }
 };
-
 // Function to update language
 function updateLanguage(selectedLang) {
     document.querySelectorAll("[data-lang]").forEach(element => {
         const key = element.getAttribute("data-lang");
+
         if (translations[selectedLang] && translations[selectedLang][key]) {
-            element.textContent = translations[selectedLang][key];
+            // Check if the element contains days-text span inside
+            let daysText = element.querySelector(".days-text");
+
+            if (daysText) {
+                // Keep the number of days unchanged, only update the status text
+                let daysValue = daysText.textContent.trim();
+
+                element.innerHTML = `<span class="status-text">${translations[selectedLang][key]}</span> 
+                                    (<span class="days-text">${daysValue}</span> 
+                                    <span data-lang="days">${translations[selectedLang]["days"]}</span>)`;
+            } else {
+                element.textContent = translations[selectedLang][key];
+            }
         }
     });
 
+    // Update the company logo text
     const logo = document.querySelector(".logo");
     if (logo) {
         logo.textContent = translations[selectedLang]["company-name"];
     }
+
     console.log(`Language changed to: ${selectedLang}`);
 }
 
 // Event listener for DOM load
 document.addEventListener("DOMContentLoaded", () => {
     const languageSelect = document.getElementById("language-select-base");
+
     if (!languageSelect) {
         console.error("Language selector not found.");
         return;
     }
-    
+
     // Load saved language from localStorage
     const savedLanguage = localStorage.getItem("selectedLanguage") || "en";
     languageSelect.value = savedLanguage;
     updateLanguage(savedLanguage);
-    
+
     // Change language event
     languageSelect.addEventListener("change", (event) => {
         const selectedLang = event.target.value;

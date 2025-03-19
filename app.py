@@ -181,6 +181,9 @@ def dashboard():
 
     expenses_data = list(expenses_collection.find({}))
     total_expenses = sum(expense['amount'] for expense in expenses_data)
+    print("Pending Tenants:", pending_tenants)
+    print("Overdue Tenants:", overdue_tenants)
+
 
     return render_template(
         'dashboard.html',
