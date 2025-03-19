@@ -101,6 +101,7 @@ def register():
         return redirect(url_for('login'))
 
     return render_template('register.html')
+from datetime import datetime, timedelta
 
 @app.route('/dashboard')
 def dashboard():
@@ -108,51 +109,92 @@ def dashboard():
         flash("Please log in first.", "danger")
         return redirect(url_for('login'))
 
-    selected_month = request.args.get("month")  # Get selected month from query params
-    tenants = list(tenants_collection.find({}))  # Fetch all tenants
+    selected_month = request.args.get("month", "")
+    tenants = list(tenants_collection.find({}))
+
+    paid_tenants = []
+    pending_tenants = []
+    overdue_tenants = []
     tenant_billing_data = []
 
     total_income = 0
     total_electricity_expenses = 0
     total_expenses = 0
 
+    today = datetime.today()
+    grace_period_days = 5  # Grace period before marking as overdue
+
+    available_months = set()
+
     for tenant in tenants:
-        for rent_record in tenant.get("rent_history", []):  # Extract rent history
-            # If a month is selected, filter the data
+        rent_due_date_obj = tenant.get("rent_due_date")
+
+        if rent_due_date_obj:
+            rent_due_date = rent_due_date_obj if isinstance(rent_due_date_obj, datetime) else datetime.strptime(rent_due_date_obj, "%Y-%m-%d")
+            rent_due_day = rent_due_date.day
+        else:
+            rent_due_day = 1  # Default to the 1st if no due date exists
+
+        for rent_record in tenant.get("rent_history", []):
+            available_months.add(rent_record["month"])
+
             if not selected_month or rent_record["month"] == selected_month:
+                total_rent = rent_record["total_rent"]
+                paid_amount = rent_record.get("paid_amount", 0)
+                remaining_balance = total_rent - paid_amount
+
+                due_date = datetime.strptime(rent_record["month"], "%Y-%m").replace(day=rent_due_day)
+                overdue_threshold = due_date + timedelta(days=grace_period_days)
+                days_since_due = (today - due_date).days
+
+                tenant_data = {
+                    "name": tenant["name"],
+                    "phone": tenant["phone_number"],
+                    "month": rent_record["month"],
+                    "rent": rent_record["rent_amount"],
+                    "electricity_bill": rent_record["electricity_bill"],
+                    "total_bill": total_rent,
+                    "paid_amount": paid_amount,
+                    "remaining_balance": remaining_balance,
+                }
+
+                if remaining_balance == 0:
+                    paid_tenants.append(tenant_data)
+                elif remaining_balance > 0 and today <= overdue_threshold:
+                    tenant_data["days_pending"] = days_since_due
+                    pending_tenants.append(tenant_data)
+                else:
+                    tenant_data["days_overdue"] = days_since_due - grace_period_days
+                    overdue_tenants.append(tenant_data)
+
                 tenant_billing_data.append({
                     "name": tenant["name"],
                     "month": rent_record["month"],
                     "rent": rent_record["rent_amount"],
                     "electricity_bill": rent_record["electricity_bill"],
                     "total_bill": rent_record["total_rent"],
-                    "phone": tenant["phone_number"]
+                    "phone": tenant["phone_number"],
                 })
 
-                # Calculate total income (sum of total_bill for each tenant)
-                total_income += rent_record["total_rent"]
-                # Calculate total electricity expenses (sum of electricity bills for each tenant)
+                total_income += total_rent
                 total_electricity_expenses += rent_record["electricity_bill"]
 
-    # Get unique months available in the database for filtering options
-    available_months = sorted(
-        {rent["month"] for tenant in tenants for rent in tenant.get("rent_history", [])}
-    )
-
-    # Fetch all expenses from the expenses collection and calculate total expenses
     expenses_data = list(expenses_collection.find({}))
     total_expenses = sum(expense['amount'] for expense in expenses_data)
 
     return render_template(
         'dashboard.html',
-        username=session['username'],
+        paid_tenants=paid_tenants,
+        pending_tenants=pending_tenants,
+        overdue_tenants=overdue_tenants,
         tenant_billing_data=tenant_billing_data,
-        available_months=available_months,
+        available_months=sorted(available_months),
         selected_month=selected_month,
-        total_income=total_income,  # Pass total income to the template
-        total_electricity_expenses=total_electricity_expenses,  # Pass total electricity expenses to the template
-        total_expenses=total_expenses  # Pass total expenses (only from the expenses collection)
+        total_income=total_income,
+        total_electricity_expenses=total_electricity_expenses,
+        total_expenses=total_expenses,
     )
+
 
 
 

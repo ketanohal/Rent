@@ -9,16 +9,16 @@ body {
     color: #E0E7FF;
 }
 
-/* Dashboard Container – Centered on all devices */
+/* Dashboard Container */
 .dashboard-container-dashboard {
-    margin: -35px auto 0; /* 80px top margin (for fixed navbar) and auto left/right centering */
+    margin: -35px auto 0;
     max-width: 1200px;
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
 }
 
-/* Report Container */
+/* Report Containers */
 .report-container-dashboard {
     background: #112240;
     padding: 3px;
@@ -94,20 +94,20 @@ body {
     color: #E0E7FF;
 }
 
-/* Billing Table */
+/* ===== Billing Table ===== */
 .billing-table-dashboard {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
     overflow-x: auto;
-    display: block
+    display: block;
 }
 
 .billing-table-dashboard th,
 .billing-table-dashboard td {
-    border: 1px solid #ddd;
     padding: 12px;
     text-align: center;
+    border: 1px solid #333; /* Darker border for better contrast */
 }
 
 .billing-table-dashboard th {
@@ -116,12 +116,34 @@ body {
     font-size: 1.1rem;
 }
 
+/* Improved row contrast */
 .billing-table-dashboard tr:nth-child(even) {
-    background-color: #0A192F;
+    background-color: #0F223B; /* Dark blueish tone for even rows */
 }
 
+.billing-table-dashboard tr:nth-child(odd) {
+    background-color: #112240; /* Slightly darker than even rows */
+}
+
+/* Row hover effect */
 .billing-table-dashboard tr:hover {
-    background-color: #112240;
+    background-color: #173A5E; /* Highlight row on hover */
+}
+
+/* ===== Status Colors ===== */
+.status-paid {
+    background-color: #28A745 !important; /* Traffic Light Green */
+    color: #E0E7FF !important;
+}
+
+.status-pending {
+    background-color: #FFC107 !important; /* Traffic Light Yellow */
+    color: #112240 !important; /* Dark text for contrast */
+}
+
+.status-overdue {
+    background-color: #DC3545 !important; /* Traffic Light Red */
+    color: #E0E7FF !important;
 }
 
 /* Call & Message Buttons */
@@ -142,21 +164,18 @@ body {
 }
 
 /* ===== Responsive Adjustments ===== */
-/* For screens below 768px */
 @media (max-width: 768px) {
     .billing-table-dashboard {
-        width: 100%;
         font-size: 0.9rem;
         display: block;
-        overflow-x: auto; /* Enable scrolling only when needed */
-        max-width: 100%;
+        overflow-x: auto;
     }
 
     .billing-table-dashboard th,
     .billing-table-dashboard td {
-        padding: 6px; /* Reduce padding */
-        font-size: 0.85rem; /* Reduce font size */
-        white-space: nowrap; /* Prevent line breaks in headers */
+        padding: 6px;
+        font-size: 0.85rem;
+        white-space: nowrap;
     }
 
     .report-boxes-dashboard {
@@ -175,20 +194,17 @@ body {
     }
 }
 
-/* For very small screens below 480px */
 @media (max-width: 480px) {
     .billing-table-dashboard {
-        width: 100%;
         font-size: 0.8rem;
         display: block;
-        overflow-x: auto; /* Horizontal scroll only if needed */
-        max-width: 100%;
+        overflow-x: auto;
     }
 
     .billing-table-dashboard th,
     .billing-table-dashboard td {
-        padding: 4px; /* Further reduce padding */
-        font-size: 0.75rem; /* Further reduce font size */
+        padding: 4px;
+        font-size: 0.75rem;
     }
 
     .report-boxes-dashboard {

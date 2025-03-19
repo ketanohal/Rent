@@ -1,20 +1,20 @@
 {% extends 'base.html' %}
 
-{% block title %}Dashboard{% endblock %}
+{% block title %}<span data-lang="dashboard">Dashboard</span>{% endblock %}
 
 {% block content %}
 <div class="dashboard-container-dashboard">
     <!-- Financial Overview -->
     <div class="report-container-dashboard">
         <h2 data-lang="financial-overview">Financial Overview</h2>
-        
+
         <!-- Month Filter Dropdown -->
         <div class="filter-options-dashboard">
-            <label for="month-filter-dashboard">Filter by Month:</label>
+            <label for="month-filter-dashboard" data-lang="filter-by-month">Filter by Month:</label>
             <select id="month-filter-dashboard" onchange="filterByMonth()">
-                <option value="" {% if not selected_month %}selected{% endif %}>All</option>
+                <option value="" {% if not selected_month %}selected{% endif %} data-lang="all-months">All</option>
                 {% for month in available_months %}
-                    <option value="{{ month }}" {% if month == selected_month %}selected{% endif %}>{{ month }}</option>
+                <option value="{{ month }}" {% if month == selected_month %}selected{% endif %}>{{ month }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -22,24 +22,73 @@
         <div class="report-boxes-dashboard">
             <div class="report-box-dashboard income-dashboard">
                 <h4 data-lang="total-income">Total Income</h4>
-                <p>${{ total_income }}</p>
+                <p>₹{{ total_income }}</p>
             </div>
             <div class="report-box-dashboard electricity-dashboard">
                 <h4 data-lang="electricity-expenses">Electricity Expenses</h4>
-                <p>${{ total_electricity_expenses }}</p>
+                <p>₹{{ total_electricity_expenses }}</p>
             </div>
             <div class="report-box-dashboard expenses-dashboard">
                 <h4 data-lang="total-expenses">Total Expenses</h4>
-                <p>${{ total_expenses }}</p>
+                <p>₹{{ total_expenses }}</p>
             </div>
         </div>
     </div>
 
-    <!-- Tenant Billing Details with Month Filter -->
+    <!-- Rent Payment Status -->
+    {% if paid_tenants or pending_tenants or overdue_tenants %}
+    <div class="report-container-dashboard">
+        <h2 data-lang="rent-payment-status">Rent Payment Status</h2>
+
+        <table class="billing-table-dashboard">
+            <thead>
+                <tr>
+                    <th data-lang="tenant-name">Tenant Name</th>
+                    <th data-lang="status">Status</th>
+                    <th data-lang="paid-amount">Paid Amount</th>
+                    <th data-lang="remaining-balance">Remaining Balance</th>
+                    <th data-lang="month">Month</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tenant in paid_tenants %}
+                <tr class="status-paid">
+                    <td>{{ tenant.name }}</td>
+                    <td data-lang="paid">Paid</td>
+                    <td>₹{{ tenant.paid_amount }}</td>
+                    <td>₹{{ tenant.remaining_balance }}</td>
+                    <td>{{ tenant.month }}</td>
+                </tr>
+                {% endfor %}
+
+                {% for tenant in pending_tenants %}
+                <tr class="status-pending">
+                    <td>{{ tenant.name }}</td>
+                    <td data-lang="pending">Pending ({{ tenant.days_pending }} <span data-lang="days">days</span>)</td>
+                    <td>₹{{ tenant.paid_amount }}</td>
+                    <td>₹{{ tenant.remaining_balance }}</td>
+                    <td>{{ tenant.month }}</td>
+                </tr>
+                {% endfor %}
+
+                {% for tenant in overdue_tenants %}
+                <tr class="status-overdue">
+                    <td>{{ tenant.name }}</td>
+                    <td data-lang="overdue">Overdue ({{ tenant.days_overdue }} <span data-lang="days">days</span>)</td>
+                    <td>₹{{ tenant.paid_amount }}</td>
+                    <td>₹{{ tenant.remaining_balance }}</td>
+                    <td>{{ tenant.month }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+    <!-- Tenant Billing Details -->
     <div class="report-container-dashboard">
         <h2 data-lang="tenant-billing-details">Tenant Billing Details</h2>
 
-        <!-- Tenant Billing Table -->
         <table class="billing-table-dashboard">
             <thead>
                 <tr>
@@ -56,18 +105,19 @@
                 <tr>
                     <td>{{ tenant.name }}</td>
                     <td>{{ tenant.month }}</td>
-                    <td>${{ tenant.rent }}</td>
-                    <td>${{ tenant.electricity_bill }}</td>
-                    <td>${{ tenant.total_bill }}</td>
+                    <td>₹{{ tenant.rent }}</td>
+                    <td>₹{{ tenant.electricity_bill }}</td>
+                    <td>₹{{ tenant.total_bill }}</td>
                     <td>
                         <a href="tel:{{ tenant.phone }}" class="call-btn-dashboard">📞</a>
-                        <a href="sms:{{ tenant.phone }}?body=For%20{{ tenant.month }},%20your%20Electricity%20Bill%20is%20${{ tenant.electricity_bill }},%20Rent%20is%20${{ tenant.rent }},%20Total%20Bill%20is%20${{ tenant.total_bill }}" class="message-btn-dashboard">✉️</a>
+                        <a href="sms:{{ tenant.phone }}?body=For%20{{ tenant.month }},%20your%20Electricity%20Bill%20is%20₹{{ tenant.electricity_bill }},%20Rent%20is%20₹{{ tenant.rent }},%20Total%20Bill%20is%20₹{{ tenant.total_bill }}" class="message-btn-dashboard">✉️</a>
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
+
 </div>
 
 <script>

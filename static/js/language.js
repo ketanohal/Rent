@@ -141,6 +141,17 @@ window.translations = window.translations || {
         "no_paid_tenants": "⚠️ No tenants have paid rent yet.",
         "no_pending_tenants": "⚠️ No pending tenants found.",
         "no_overdue_tenants": "✅ No overdue tenants.",
+        "rent-payment-status": "Rent Payment Status",
+        "filter-by-month": "Filter by Month:",
+        "all-months": "All",
+        "paid-amount": "Paid Amount",
+        "remaining-balance": "Remaining Balance",
+        "days": "days",
+        "status": "Status",
+        "paid": "Paid",
+        "pending": "Pending",
+        "overdue": "Overdue",
+
         
         
         
@@ -286,7 +297,19 @@ window.translations = window.translations || {
         "update": "अपडेट करा",
         "no_paid_tenants": "⚠️ अद्याप कोणत्याही भाडेकरूने भाडे भरलेले नाही.",
         "no_pending_tenants": "⚠️ कोणतेही बकाया भाडेकरू सापडले नाहीत.",
-        "no_overdue_tenants": "✅ कोणतेही मुदतीत न भरलेले भाडेकरू नाहीत."
+        "no_overdue_tenants": "✅ कोणतेही मुदतीत न भरलेले भाडेकरू नाहीत.",
+        "rent-payment-status": "भाडे भरणा स्थिती",
+        "filter-by-month": "महिन्यानुसार गाळा:",
+        "all-months": "सर्व",
+        "paid-amount": "भरलेली रक्कम",
+        "remaining-balance": "शिल्लक रक्कम",
+        "days": "दिवस",
+        "status": "स्थिती",
+        "paid": "भरलेली",
+        "pending": "बाकी",
+        "overdue": "मुदतीत",
+        
+
         
     
     }
