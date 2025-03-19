@@ -5,17 +5,17 @@ body {
     padding: 0;
     background-color: #f4f4f4;
 }
-/* === 🚀 Global Futuristic Loading Animation === */
+/* === 🚀 Futuristic Loading Animation === */
 #loading-animation {
     position: fixed;
     width: 100%;
     height: 100%;
-    background: rgba(10, 25, 47, 0.95); /* Dark transparent */
+    background: rgba(10, 25, 47, 0.95); /* Dark overlay */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    z-index: 9999; /* Keep it above all elements */
+    z-index: 9999;
     color: #64FFDA; /* Sky Blue Accent */
     font-size: 1.5rem;
     font-weight: bold;
@@ -23,24 +23,72 @@ body {
     display: none; /* Initially hidden */
 }
 
-.loader {
-    width: 50px;
-    height: 50px;
-    border: 5px solid rgba(100, 255, 218, 0.2);
-    border-top-color: #64FFDA;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin-bottom: 10px;
+/* 🌟 Pulsating Neon Circle */
+.loader-container {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.loader-circle {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 4px solid transparent;
+    animation: pulse 1.5s infinite ease-in-out;
 }
+
+.loader-circle:nth-child(1) {
+    border: 4px solid rgba(100, 255, 218, 0.3);
+    animation-delay: 0s;
+}
+
+.loader-circle:nth-child(2) {
+    border: 4px solid rgba(100, 255, 218, 0.6);
+    animation-delay: 0.3s;
+}
+
+/* 🌌 Rotating Cube Inside Circle */
+.loader-cube {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    transform-style: preserve-3d;
+    animation: rotateCube 1.5s infinite linear;
+}
+
+.loader-cube div {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: rgba(100, 255, 218, 0.3);
+    border: 1px solid #64FFDA;
+}
+
+/* Cube Faces */
+.loader-cube .front  { transform: translateZ(15px); }
+.loader-cube .back   { transform: rotateY(180deg) translateZ(15px); }
+.loader-cube .left   { transform: rotateY(-90deg) translateZ(15px); }
+.loader-cube .right  { transform: rotateY(90deg) translateZ(15px); }
+.loader-cube .top    { transform: rotateX(90deg) translateZ(15px); }
+.loader-cube .bottom { transform: rotateX(-90deg) translateZ(15px); }
+
+/* 🔄 Animations */
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
+
+@keyframes rotateCube {
+    0% { transform: rotateX(0deg) rotateY(0deg); }
+    100% { transform: rotateX(360deg) rotateY(360deg); }
+}
+
 
 
 /* ✅ Navigation Bar */
