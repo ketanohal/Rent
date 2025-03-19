@@ -80,11 +80,22 @@ select:focus {
     border-color: var(--primary-color);
 }
 
+/* 📋 Table Wrapper to Center Table */
+.table-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    width: 100%;
+    overflow-x: auto; /* Prevent horizontal overflow */
+}
+
 /* 📋 Table Styling */
 .rentcollection-rent-table {
     width: 100%;
+    max-width: 500px; /* Prevents table from stretching too wide */
     border-collapse: collapse;
-    margin-bottom: 15px;
+    margin: 0 auto; /* Centers the table */
+    background: var(--secondary-color);
+    border-radius: 10px;
 }
 
 /* 🏷️ Table Header */
@@ -125,8 +136,8 @@ select:focus {
 /* 📥 Input Fields */
 input[type="number"] {
     width: 100%;
-    max-width: 250px;  /* Increased max-width from 160px to 250px */
-    padding: 8px;
+    max-width: 250px; /* Increased max-width for better usability */
+    padding: 10px;
     background: var(--input-bg);
     border: 1px solid var(--input-border);
     color: var(--text-color);
@@ -146,33 +157,34 @@ input[type="number"]:focus {
     background: var(--button-bg);
     color: white;
     border: none;
-    padding: 8px 12px;
+    padding: 10px;
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s;
     font-size: 14px;
     width: 100%;
-    max-width: 120px;
+    max-width: 180px;
 }
 
 .rentcollection-update-btn:hover {
     background: var(--button-hover-bg);
 }
 
-/* ✅ Better Form Layout in Table */
+/* ✅ Improved Form Layout */
 .rentcollection-rent-table form {
     display: flex;
-    flex-direction: column;  /* Updated to column layout so the input and button stack */
+    flex-direction: column; /* Input and button on separate lines */
     align-items: center;
+    gap: 5px;
+    margin-top: 5px;
 }
 
 /* 📱 Mobile Optimization */
 @media screen and (max-width: 500px) {
     /* 📌 Prevent Table Overflow */
-    .rentcollection-rent-table {
-        display: block;
+    .table-container {
+        justify-content: center;
         overflow-x: auto;
-        white-space: nowrap;
     }
 
     /* 🔲 Container Adjustments */
@@ -195,14 +207,14 @@ input[type="number"]:focus {
 
     /* 🛠️ Input & Button Adjustments */
     input[type="number"] {
-        font-size: 12px;
-        padding: 6px;
+        font-size: 14px;
+        padding: 10px;
         max-width: 100%;  /* Full width on mobile */
     }
 
     .rentcollection-update-btn {
-        font-size: 12px;
-        padding: 6px 8px;
+        font-size: 14px;
+        padding: 10px;
         max-width: 100%;  /* Button takes full width on mobile */
     }
 
