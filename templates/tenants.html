@@ -11,7 +11,6 @@
         <h2 data-lang="tenant_list">Tenant List</h2>
         <p data-lang="click_tenant">Click on a tenant to view full details.</p>
 
-        <!-- Card Layout for Tenants -->
         <div class="tenant-cards-tenants">
             {% for tenant in tenants %}
             <div class="tenant-card-tenants">
@@ -19,13 +18,28 @@
                     <h3>{{ tenant.name }}</h3>
                     <p>{{ tenant.unit_type }}</p>
                 </div>
+                
                 <div class="card-body-tenants">
-                    <p><strong data-lang="phone">Phone:</strong> {{ tenant.phone_number }}</p>
-                    <p><strong data-lang="rent_amount">Rent Amount:</strong> ${{ tenant.rent_amount }}</p>
-                    <p><strong data-lang="lease_start_date">Lease Start Date:</strong> {{ tenant.lease_start_date.strftime('%Y-%m-%d') }}</p>
+                    <div class="detail-row">
+                        <span class="detail-label" data-lang="phone">Phone</span>
+                        <span class="detail-value">{{ tenant.phone_number }}</span>
+                    </div>
+                    
+                    <div class="detail-row">
+                        <span class="detail-label" data-lang="rent_amount">Rent Amount</span>
+                        <span class="detail-value">${{ tenant.rent_amount }}</span>
+                    </div>
+                    
+                    <div class="detail-row">
+                        <span class="detail-label" data-lang="lease_start_date">Lease Start</span>
+                        <span class="detail-value">{{ tenant.lease_start_date.strftime('%Y-%m-%d') }}</span>
+                    </div>
                 </div>
+
                 <div class="card-footer-tenants">
-                    <a href="{{ url_for('tenant_details', tenant_id=tenant['_id']|string) }}" class="view-btn-tenants" data-lang="view">
+                    <a href="{{ url_for('tenant_details', tenant_id=tenant['_id']|string) }}" 
+                       class="view-btn-tenants" 
+                       data-lang="view">
                         View Details
                     </a>
                 </div>
