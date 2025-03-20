@@ -1,3 +1,4 @@
+
 /* ===== General Body Styling ===== */
 body {
     background-color: #121212; /* Dark background */
@@ -35,140 +36,25 @@ body {
     margin-bottom: 5px;
 }
 
-/* ===== ID Card Style Tenants ===== */
+/* ===== Card Layout for Tenants ===== */
 .tenant-cards-tenants {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 25px;
-    padding: 20px 0;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Spacing between cards */
 }
 
 .tenant-card-tenants {
-    background-color: #2A2A2A;
+    background-color: #2A2A2A; /* Dark card background */
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 3px -4px 0px 0px rgb(14 124 181 / 47%);
+    box-shadow:3px -4px 0px 0px rgb(14 124 181 / 47%);;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .tenant-card-tenants:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px); /* Lift card on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
-
-.card-header-tenants {
-    border-bottom: 2px solid #007bff;
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.card-header-tenants h3 {
-    margin: 0;
-    color: #2c3e50;
-    font-size: 1.4em;
-    font-weight: 700;
-}
-
-.card-header-tenants p {
-    margin: 0;
-    color: #007bff;
-    font-weight: 600;
-    font-size: 0.9em;
-    background: rgba(0, 123, 255, 0.1);
-    padding: 3px 8px;
-    border-radius: 4px;
-}
-
-.tenant-photo {
-    width: 80px;
-    height: 80px;
-    border-radius: 8px;
-    background: #ced4da;
-    margin-right: 15px;
-    overflow: hidden;
-    position: relative;
-    border: 2px solid #fff;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.tenant-photo::before {
-    content: "Photo";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #6c757d;
-    font-size: 0.8em;
-    opacity: 0.5;
-}
-
-.card-body-tenants {
-    display: grid;
-    grid-template-columns: -1fr 1fr;
-    gap: 12px;
-    font-size: 0.9em;
-}
-
-.card-body-tenants p {
-    margin: 5px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.card-body-tenants strong {
-    color: #495057;
-    font-weight: 600;
-    margin-right: 8px;
-}
-
-.card-body-tenants span {
-    color: #6c757d;
-    text-align: right;
-}
-
-.id-number {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: #007bff;
-    color: white;
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 0.8em;
-    font-weight: 500;
-}
-
-.hologram-sticker {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(45deg, 
-        rgba(255,255,255,0.8) 0%, 
-        rgba(204,204,204,0.8) 50%, 
-        rgba(255,255,255,0.8) 100%);
-    border-radius: 50%;
-    opacity: 0.6;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-.barcode {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 20px;
-    background: repeating-linear-gradient(90deg, 
-        #000 0%, #000 20%, 
-        transparent 20%, transparent 40%);
-    opacity: 0.1;
-}
-
-
 
 /* ===== Card Header Styling ===== */
 .card-header-tenants h3 {
