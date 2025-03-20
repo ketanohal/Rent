@@ -46,18 +46,18 @@ body {
     margin-bottom: 12px;
 }
 .detail-label {
-    color: #888;
+    color: #00bfff;
     font-size: 0.9rem;
     flex: 1;
 }
 
 .tenant-card-tenants {
-    background: #2A2A2A;
+    background: #0b0f1a;
     border-radius: 12px;
     padding: 25px;
-    box-shadow: 3px -4px 0px 0px rgba(14, 124, 181, 0.47);
+    box-shadow: 4px 4px 0px 0px rgba(14, 124, 181, 0.47);
     transition: transform 0.3s ease;
-    border: 1px solid rgba(0, 191, 255, 0.1);
+    border: 1px solid rgba(74, 198, 240, 0.329);
 }
 
 .tenant-card-tenants:hover {
@@ -88,9 +88,9 @@ body {
 /* Optimized Information Layout */
 .card-body-tenants {
     display: grid;
-    grid-template-columns: repeat(2, 1fr));
-    gap: 15px;
-    margin-bottom: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0px;
+    margin-bottom: 10px;
 }
 
 .info-group {
@@ -121,15 +121,19 @@ body {
 
 .view-btn-tenants {
     display: block;
-    width: 100%;
-    padding: 12px;
+    width: auto;
+    max-width: 40%;
+    margin: 10px auto 0;
+    padding: 8px 16px;
     background-color: #00BFFF;
     color: #121212;
-    border-radius: 6px;
+    border-radius: 19px;
     text-align: center;
     font-weight: 600;
-    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
     text-decoration: none;
+    text-transform: uppercase;
 }
 
 .view-btn-tenants:hover {

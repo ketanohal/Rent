@@ -44,10 +44,12 @@ body {
 
 /* 🏷️ Titles */
 h1, h2 {
+    margin-top: 10px;
     text-align: center;
     color: var(--primary-color);
     margin-bottom: 10px;
     font-size: 18px;
+    
 }
 
 /* 🔽 Month Selector */
@@ -113,7 +115,7 @@ select:focus {
 .rentcollection-rent-table td {
     padding: 10px;
     text-align: center;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid #1a6ba1;
     font-size: 13px;
 }
 
