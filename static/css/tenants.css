@@ -1,219 +1,167 @@
-/* ===== Tenants Page Styles ===== */
-
-/* General Body Styling */
+/* ===== General Body Styling ===== */
 body {
-    background-color: #0A192F; /* Dark Navy */
-    color: #CCD6F6; /* Light Text */
-    font-family: 'Poppins', sans-serif;
+    background-color: #121212; /* Dark background */
+    color: #E0E0E0; /* Light text */
+    font-family: 'Inter', sans-serif; /* Modern sans-serif font */
     margin: 0;
     padding: 0;
+    line-height: 1.6;
 }
 
-/* Container Styling */
+/* ===== Container Styling ===== */
 .container-tenants {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 40px auto;
     padding: 20px;
-    background: #112240; /* Darker Navy */
+    background: #0b0f1a; /* Slightly lighter dark background */
     border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
+}
+
+/* ===== Header Styling ===== */
+.container-tenants h2 {
+    color: #00BFFF; /* Sky blue accent */
+    font-size: 20px;
+    margin-bottom: 20px;
     text-align: center;
 }
 
-/* Header Styling */
-.container-tenants h2 {
-    color: #64FFDA; /* Light Blue */
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-/* Subheader / Paragraph Styling */
+/* ===== Subheader / Paragraph Styling ===== */
 .container-tenants p {
-    color: #A8B2D1; /* Light Gray */
+    color: #B0B0B0; /* Light gray for secondary text */
     font-size: 1.1rem;
-    margin-bottom: 30px;
+    text-align: center;
+    margin-bottom: 5px;
 }
 
-/* Table Styling */
-.tenant-table-tenants {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+/* ===== Card Layout for Tenants ===== */
+.tenant-cards-tenants {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Spacing between cards */
 }
 
-.tenant-table-tenants th,
-.tenant-table-tenants td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #444;
-    box-sizing: border-box;
+.tenant-card-tenants {
+    background-color: #2A2A2A; /* Dark card background */
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow:3px -4px 0px 0px rgb(14 124 181 / 47%);;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.tenant-table-tenants th {
-    background-color: #1D2A48; /* Slightly lighter Navy */
-    color: #64FFDA; /* Light Blue */
-    font-weight: bold;
+.tenant-card-tenants:hover {
+    transform: translateY(-5px); /* Lift card on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
-.tenant-table-tenants td {
-    background-color: #25345C; /* Medium Navy */
-    color: #A8B2D1; /* Light Gray */
+/* ===== Card Header Styling ===== */
+.card-header-tenants h3 {
+    color: #00BFFF; /* Sky blue accent */
+    font-size: 1.5rem;
+    margin-bottom: 10px;
 }
 
-/* Links Styling */
-.tenant-table-tenants a {
-    font-size: 15px;
-    color: #ffffff; /* White */
-    text-decoration: none;
-    transition: color 0.3s ease-in-out;
+.card-header-tenants p {
+    color: #B0B0B0; /* Light gray for secondary text */
+    font-size: 1rem;
 }
 
-.tenant-table-tenants a:hover {
-    color: #64FFDA; /* Light Blue on hover */
+/* ===== Card Body Styling ===== */
+.card-body-tenants {
+    margin: 15px 0;
 }
 
-/* View Button Styling */
+.card-body-tenants p {
+    margin: 8px 0;
+    font-size: 0.95rem;
+    color: #E0E0E0; /* Light text */
+}
+
+.card-body-tenants strong {
+    color: #00BFFF; /* Sky blue accent for labels */
+}
+
+/* ===== Card Footer Styling ===== */
+.card-footer-tenants {
+    text-align: right;
+}
+
+/* ===== View Button Styling ===== */
 .view-btn-tenants {
-    background-color: #1f8c3a;  /* Greenish accent */
-    color: #112240;            /* Dark Navy */
-    padding: 8px 15px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: all 0.3s ease-in-out;
-    font-weight: bold;
     display: inline-block;
+    padding: 8px 16px;
+    background-color: #00BFFF; /* Sky blue accent */
+    color: #121212; /* Dark text */
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .view-btn-tenants:hover {
-    background-color: #A8B2D1; /* Lighter accent */
-    color: #112240;
+    background-color: #009ACD; /* Darker sky blue on hover */
+    color: #FFFFFF; /* White text on hover */
 }
 
-/* ===== Responsive Adjustments ===== */
-/* ===== Responsive Table Styling for Mobile Devices ===== */
-
-/* General Table Adjustments */
-.tenant-table-tenants {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-/* Table Row and Cell Styling */
-.tenant-table-tenants th, 
-.tenant-table-tenants td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #444;
-    box-sizing: border-box;
-}
-
-/* Ensure Full Width for Rows */
-.tenant-table-tenants tr {
-    width: 100%;
-    display: table-row;
-}
-
-/* Responsive Design for Smaller Screens */
-
-/* For tablets (max-width: 1200px) */
-@media (max-width: 1200px) {
+/* ===== Responsive Design for Mobile Devices ===== */
+@media (max-width: 768px) {
     .container-tenants {
         max-width: 90%;
+        padding: 15px;
     }
-    .tenant-table-tenants th, 
-    .tenant-table-tenants td {
-        padding: 12px;
-        font-size: 15px;
-    }
-}
 
-/* For tablets (max-width: 992px) */
-@media (max-width: 992px) {
-    .container-tenants {
-        max-width: 95%;
+    .tenant-cards-tenants {
+        grid-template-columns: 1fr; /* Single column on mobile */
     }
-    .tenant-table-tenants th, 
-    .tenant-table-tenants td {
-        padding: 10px;
-        font-size: 14px;
-    }
-}
 
-/* For small devices (max-width: 768px) */
-@media (max-width: 768px) {
-    .tenant-table-tenants thead {
-        display: none; /* Hide headers */
+    .tenant-card-tenants {
+        padding: 15px;
     }
-    .tenant-table-tenants tbody {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
+
+    .card-header-tenants h3 {
+        font-size: 1.3rem;
     }
-    .tenant-table-tenants tr {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        margin-bottom: 15px;
-        border: 1px solid #444;
-        padding: 12px;
-        border-radius: 8px;
-        background-color: #25345C;
-        box-sizing: border-box;
+
+    .card-header-tenants p {
+        font-size: 0.9rem;
     }
-    .tenant-table-tenants td {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        padding: 10px;
-        font-size: 13px;
-        border-bottom: 1px solid #444;
-        box-sizing: border-box;
+
+    .card-body-tenants p {
+        font-size: 0.85rem;
     }
-    .tenant-table-tenants td:last-child {
-        border-bottom: none;
-    }
-    .tenant-table-tenants td::before {
-        content: attr(data-lang);
-        font-weight: bold;
-        color: #64FFDA;
-    }
-    /* Full-width buttons */
+
     .view-btn-tenants {
-        width: 100%;
-        text-align: center;
-        margin-top: 10px;
-        padding: 10px;
+        padding: 6px 12px;
+        font-size: 0.8rem;
     }
 }
 
-/* For extra small devices (max-width: 600px) */
-@media (max-width: 600px) {
-    .container-tenants {
-        width: 100%;
-        padding: 10px;
-    }
-    .tenant-table-tenants tr {
-        padding: 10px;
-    }
-    .tenant-table-tenants td {
-        padding: 8px;
-        font-size: 12px;
-    }
-}
-
-/* For very small devices (max-width: 480px) */
 @media (max-width: 480px) {
     .container-tenants {
-        width: 100%;
-        margin: 5px auto;
-        padding: 8px;
+        max-width: 100%;
+        padding: 10px;
     }
-    .tenant-table-tenants tr {
-        padding: 8px;
+
+    .tenant-card-tenants {
+        padding: 12px;
     }
-    .tenant-table-tenants td {
-        padding: 6px;
-        font-size: 11px;
+
+    .card-header-tenants h3 {
+        font-size: 1.2rem;
+    }
+
+    .card-header-tenants p {
+        font-size: 0.85rem;
+    }
+
+    .card-body-tenants p {
+        font-size: 0.8rem;
+    }
+
+    .view-btn-tenants {
+        padding: 5px 10px;
+        font-size: 0.75rem;
     }
 }

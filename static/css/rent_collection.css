@@ -37,7 +37,7 @@ body {
     max-width: 500px;
     margin: 0 auto;
     padding: 15px;
-    background: var(--card-bg);
+    background: #0b0f1a;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
@@ -203,7 +203,7 @@ input[type="number"]:focus {
 
     /* 🏷️ Titles Adjustments */
     h1, h2 {
-        font-size: 16px;
+        font-size: 20px;
     }
 
     /* 🛠️ Input & Button Adjustments */

@@ -11,38 +11,27 @@
         <h2 data-lang="tenant_list">Tenant List</h2>
         <p data-lang="click_tenant">Click on a tenant to view full details.</p>
 
-        <table class="tenant-table-tenants">
-            <thead>
-                <tr>
-                    <th data-lang="tenant_name">Name</th>
-                    <th data-lang="phone">Phone</th>
-                    <th data-lang="unit_type">Unit Type</th>
-                    <th data-lang="rent_amount">Rent Amount</th>
-                    <th data-lang="lease_start_date">Lease Start Date</th>
-                    <th data-lang="details">Details</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for tenant in tenants %}
-                <tr>
-                    <td>
-                        <a href="{{ url_for('tenant_details', tenant_id=tenant['_id']|string) }}">
-                            {{ tenant.name }}
-                        </a>
-                    </td>
-                    <td>{{ tenant.phone_number }}</td>
-                    <td>{{ tenant.unit_type }}</td>
-                    <td>${{ tenant.rent_amount }}</td>
-                    <td>{{ tenant.lease_start_date.strftime('%Y-%m-%d') }}</td>
-                    <td>
-                        <a href="{{ url_for('tenant_details', tenant_id=tenant['_id']|string) }}" class="view-btn-tenants" data-lang="view">
-                            View
-                        </a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <!-- Card Layout for Tenants -->
+        <div class="tenant-cards-tenants">
+            {% for tenant in tenants %}
+            <div class="tenant-card-tenants">
+                <div class="card-header-tenants">
+                    <h3>{{ tenant.name }}</h3>
+                    <p>{{ tenant.unit_type }}</p>
+                </div>
+                <div class="card-body-tenants">
+                    <p><strong data-lang="phone">Phone:</strong> {{ tenant.phone_number }}</p>
+                    <p><strong data-lang="rent_amount">Rent Amount:</strong> ${{ tenant.rent_amount }}</p>
+                    <p><strong data-lang="lease_start_date">Lease Start Date:</strong> {{ tenant.lease_start_date.strftime('%Y-%m-%d') }}</p>
+                </div>
+                <div class="card-footer-tenants">
+                    <a href="{{ url_for('tenant_details', tenant_id=tenant['_id']|string) }}" class="view-btn-tenants" data-lang="view">
+                        View Details
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 
     <script src="{{ url_for('static', filename='js/language.js') }}"></script>
