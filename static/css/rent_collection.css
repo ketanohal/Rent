@@ -59,6 +59,7 @@ form {
 }
 
 label {
+    text-align: center;
     font-size: 14px;
     margin-bottom: 5px;
 }

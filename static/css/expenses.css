@@ -41,7 +41,7 @@ input {
 }
 
 button {
-    background-color: #00BFFF;
+    background-color: #009acd;
     color: #121212;
     cursor: pointer;
     transition: background-color 0.3s;
