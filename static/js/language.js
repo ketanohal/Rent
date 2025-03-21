@@ -1,3 +1,4 @@
+// Define translations for different languages
 window.translations = window.translations || {
     en: {
         "new-company-name": "NivasSetu",
@@ -14,21 +15,18 @@ window.translations = window.translations || {
         "expenses": "💸 Expenses",
         "reports": "📊 Reports",
         "user-greeting": "Hi,",
-        "nav-home": "Home",
-        "nav-login": "Login",
-        "nav-register": "Register",
-        "home-welcome": "Welcome to NivasSetu",
-        "home-description": "Your trusted solution for managing house rentals effortlessly...",
-        "feature-1": "✔️ Easy Tenant Management",
-        "feature-2": "✔️ Payment Tracking & History",
-        "feature-3": "✔️ Automated Notifications",
-        "feature-4": "✔️ Secure Data Management",
-        "login-heading": "Login",
+        "home-welcome": "Simplify Your Rental Management",
+        "home-description": "NivasSetu is your all-in-one solution for seamless property management. From tenant onboarding to rent collection, we make it easy to manage your rentals with precision and ease.",
+        "feature-1": "Effortless Tenant Management",
+        "feature-2": "Automated Payment Tracking",
+        "feature-3": "Smart Notifications",
+        "feature-4": "Secure Data Management",
+        "login-heading": "Login to Your Account",
         "label-username": "Username",
         "label-password": "Password",
         "btn-login": "Login",
         "signup-link": "Don't have an account?",
-        "link-signup": "Sign up",
+        "link-signup": "Sign Up",
         "register-heading": "Register",
         "label-email": "Email",
         "label-confirm-password": "Confirm Password",
@@ -43,12 +41,6 @@ window.translations = window.translations || {
         "unit-type-header": "Unit Type",
         "unit-count-header": "Number of Units",
         "dashboard-menu": "Dashboard Menu",
-        "add-property": "➕ Add Property",
-        "add-unit": "🏢 Add Unit",
-        "add-tenant": "👤 Add Tenant",
-        "tenant-list": "📋 Tenant List",
-        "expenses": "💸 Expenses",
-        "reports": "📊 Reports",
         "financial-overview": "Financial Overview",
         "filter-label": "Filter by:",
         "filter-1-month": "Last Month",
@@ -65,7 +57,6 @@ window.translations = window.translations || {
         "electricity-bill": "Electricity Bill",
         "total-bill": "Total Bill",
         "contact": "Contact",
-        "add_tenant": "Add Tenant",
         "tenant_name": "Tenant Name:",
         "phone_number": "Phone Number:",
         "alt_phone_number": "Alternate Phone Number:",
@@ -79,7 +70,6 @@ window.translations = window.translations || {
         "rent_due_date": "Rent Due Date:",
         "notes": "Notes:",
         "upload_documents": "Upload Documents (PDF, Images):",
-        "submit": "Submit",
         "electricity_bill_calc": "Electricity Bill Calculation",
         "select_tenant": "Select Tenant:",
         "date_of_reading": "Date of Reading:",
@@ -92,7 +82,6 @@ window.translations = window.translations || {
         "all_tenants": "-- All Tenants --",
         "btn-apply-filters": "Apply Filters",
         "electricity_bills": "Electricity Bills",
-        "electricity_bill_calc": "Electricity Bill Calculation",
         "month": "Month",
         "tenant": "Tenant",
         "room": "Room",
@@ -103,14 +92,10 @@ window.translations = window.translations || {
         "total_bill": "Total Bill (₹)",
         "apply_filters": "Apply Filters",
         "tenant_list": "Tenant List",
-        "tenant_name": "Name",
         "phone": "Phone",
         "unit_type": "Unit Type",
-        "rent_amount": "Rent Amount",
-        "lease_start_date": "Lease Start Date",
         "details": "Details",
         "view": "View",
-        "expenses": "Expenses",
         "add_expense": "Add Expense",
         "expense_name": "Expense Name",
         "expense_amount": "Amount ($)",
@@ -131,11 +116,9 @@ window.translations = window.translations || {
         "overdue_tenants": "Overdue Tenants",
         "name": "Name",
         "room_no": "Room No",
-        "phone": "Phone",
         "total_rent": "Total Rent",
         "paid_amount": "Paid Amount",
         "balance": "Balance",
-        "action": "Action",
         "update": "Update",
         "no_paid_tenants": "⚠️ No tenants have paid rent yet.",
         "no_pending_tenants": "⚠️ No pending tenants found.",
@@ -162,7 +145,6 @@ window.translations = window.translations || {
         "notes": "Notes",
         "rent-summary": "Rent Summary",
         "total-rent": "Total Rent",
-        "month": "Month",
         "electricity-bill": "Electricity Bill",
         "total-rent-paid": "Total Rent Paid Until Now",
         "no-rent-records": "No rent records found for this tenant.",
@@ -173,10 +155,6 @@ window.translations = window.translations || {
         "view-pan": "View PAN",
         "photo": "Photo",
         "view-photo": "View Photo"
-
-        
-        
-        
     },
     mr: {
         "new-company-name": "निवाससेतु",
@@ -193,17 +171,14 @@ window.translations = window.translations || {
         "expenses": "💸 खर्च",
         "reports": "📊 अहवाल",
         "user-greeting": "नमस्कार",
-        "nav-home": "मुख्यपृष्ठ",
-        "nav-login": "लॉगिन",
-        "nav-register": "नोंदणी",
-        "home-welcome": "निवाससेतु मध्ये आपले स्वागत आहे",
-        "home-description": "भाडे व्यवस्थापन सोप्या पद्धतीने करण्यासाठी तुमचा विश्वसनीय उपाय...",
-        "feature-1": "✔️ सोपी भाडेकरू व्यवस्थापन",
-        "feature-2": "✔️ पेमेंट ट्रॅकिंग आणि इतिहास",
-        "feature-3": "✔️ स्वयंचलित सूचना",
-        "feature-4": "✔️ सुरक्षित डेटा व्यवस्थापन",
-        "login-heading": "लॉगिन",
-        "label-username": "वापरकर्ता नाव",
+        "home-welcome": "तुमच्या भाडे व्यवस्थापनाला सोपे करा",
+        "home-description": "निवाससेतु हे तुमच्या संपत्ती व्यवस्थापनासाठी एकाच ठिकाणी उपलब्ध असलेले सर्वसमावेशक उपाय आहे. भाडेकरूंच्या नोंदणीपासून भाडे वसुलीपर्यंत, आम्ही तुमच्या भाडे व्यवस्थापनाला सुलभ आणि अचूक बनवतो.",
+        "feature-1": "सहज भाडेकरू व्यवस्थापन",
+        "feature-2": "स्वयंचलित पेमेंट ट्रॅकिंग",
+        "feature-3": "स्मार्ट सूचना",
+        "feature-4": "सुरक्षित डेटा व्यवस्थापन",
+        "login-heading": "तुमच्या खात्यात लॉगिन करा",
+        "label-username": "वापरकर्तानाव",
         "label-password": "पासवर्ड",
         "btn-login": "लॉगिन",
         "signup-link": "खाते नाही का?",
@@ -222,12 +197,6 @@ window.translations = window.translations || {
         "unit-type-header": "युनिट प्रकार",
         "unit-count-header": "युनिट्सची संख्या",
         "dashboard-menu": "डॅशबोर्ड मेनू",
-        "add-property": "➕ मालमत्ता जोडा",
-        "add-unit": "🏢 युनिट जोडा",
-        "add-tenant": "👤 भाडेकरू जोडा",
-        "tenant-list": "📋 भाडेकरू यादी",
-        "expenses": "💸 खर्च",
-        "reports": "📊 अहवाल",
         "financial-overview": "आर्थिक विहंगावलोकन",
         "filter-label": "गाळणी करा:",
         "filter-1-month": "मागील महिना",
@@ -242,10 +211,8 @@ window.translations = window.translations || {
         "month": "महिना",
         "rent": "भाडे",
         "electricity-bill": "वीज बिल",
-        "electricity_bill_calc": "वीज बिल गणना",
         "total-bill": "एकूण बिल",
         "contact": "संपर्क",
-        "add_tenant": "भाडेकरू जोडा",
         "tenant_name": "भाडेकरूचे नाव:",
         "phone_number": "फोन नंबर:",
         "alt_phone_number": "पर्यायी फोन नंबर:",
@@ -259,7 +226,6 @@ window.translations = window.translations || {
         "rent_due_date": "भाडे देय तारीख:",
         "notes": "टीप:",
         "upload_documents": "दस्तऐवज अपलोड करा (PDF, प्रतिमा):",
-        "submit": "सबमिट करा",
         "electricity_bill_calc": "वीज बिल गणना",
         "select_tenant": "भाडेकरू निवडा:",
         "date_of_reading": "वाचनाची तारीख:",
@@ -282,14 +248,10 @@ window.translations = window.translations || {
         "total_bill": "एकूण बिल (₹)",
         "apply_filters": "गाळणी लागू करा",
         "tenant_list": "भाडेकरू यादी",
-        "tenant_name": "नाव",
         "phone": "फोन",
         "unit_type": "युनिट प्रकार",
-        "rent_amount": "भाड्याची रक्कम",
-        "lease_start_date": "भाड्याची सुरूवात तारीख",
         "details": "तपशील",
         "view": "पहा",
-        "expenses": "खर्च",
         "add_expense": "खर्च जोडा",
         "expense_name": "खर्चाचे नाव",
         "expense_amount": "रक्कम ($)",
@@ -310,11 +272,9 @@ window.translations = window.translations || {
         "overdue_tenants": "मुदतीत न भरलेले भाडेकरू",
         "name": "नाव",
         "room_no": "खोली क्रमांक",
-        "phone": "फोन",
         "total_rent": "एकूण भाडे",
         "paid_amount": "भरलेली रक्कम",
         "balance": "उर्वरित रक्कम",
-        "action": "क्रिया",
         "update": "अपडेट करा",
         "no_paid_tenants": "⚠️ अद्याप कोणत्याही भाडेकरूने भाडे भरलेले नाही.",
         "no_pending_tenants": "⚠️ कोणतेही बकाया भाडेकरू सापडले नाहीत.",
@@ -340,10 +300,9 @@ window.translations = window.translations || {
         "rent-due-date": "भाडे देय तारीख",
         "notes": "टीप",
         "rent-summary": "भाडे सारांश",
-        "total-rent-paid": "आतापर्यंतचे एकूण भाडे",
-        "month": "महिना",
-        "electricity-bill": "वीज बिल",
         "total-rent": "एकूण भाडे",
+        "electricity-bill": "वीज बिल",
+        "total-rent-paid": "आतापर्यंतचे एकूण भाडे",
         "no-rent-records": "या भाडेकरूसाठी कोणतेही भाडे नोंदी सापडल्या नाहीत.",
         "back-to-list": "यादीत परत जा",
         "aadhaar-card": "आधार कार्ड",
@@ -352,35 +311,33 @@ window.translations = window.translations || {
         "view-pan": "पॅन पहा",
         "photo": "फोटो",
         "view-photo": "फोटो पहा"
-
-
-        
-    
     }
 };
+
 // Function to update language
 function updateLanguage(selectedLang) {
+    console.log("updateLanguage called");
     document.querySelectorAll("[data-lang]").forEach(element => {
         const key = element.getAttribute("data-lang");
 
         if (translations[selectedLang] && translations[selectedLang][key]) {
-            // Check if the element contains days-text span inside
-            let daysText = element.querySelector(".days-text");
+            const imgTag = element.querySelector("img");
 
-            if (daysText) {
-                // Keep the number of days unchanged, only update the status text
-                let daysValue = daysText.textContent.trim();
-
-                element.innerHTML = `<span class="status-text">${translations[selectedLang][key]}</span> 
-                                    (<span class="days-text">${daysValue}</span> 
-                                    <span data-lang="days">${translations[selectedLang]["days"]}</span>)`;
+            if (imgTag) {
+                // If the element contains an image, update only the text after the image
+                const textNode = Array.from(element.childNodes).find(node => node.nodeType === Node.TEXT_NODE);
+                
+                if (textNode) {
+                    textNode.textContent = translations[selectedLang][key];
+                } else {
+                    element.appendChild(document.createTextNode(translations[selectedLang][key]));
+                }
             } else {
                 element.textContent = translations[selectedLang][key];
             }
         }
     });
 
-    // Update the company logo text
     const logo = document.querySelector(".logo");
     if (logo) {
         logo.textContent = translations[selectedLang]["new-company-name"];
@@ -393,20 +350,32 @@ function updateLanguage(selectedLang) {
 document.addEventListener("DOMContentLoaded", () => {
     const languageSelect = document.getElementById("language-select-base");
 
-    if (!languageSelect) {
-        console.error("Language selector not found.");
-        return;
+    // Load saved language from localStorage
+    let selectedLang = localStorage.getItem("selectedLanguage") || "en";
+    
+    // Check if there's a language parameter in the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlLang = urlParams.get("lang");
+    if (urlLang) {
+        selectedLang = urlLang;
+        localStorage.setItem("selectedLanguage", selectedLang); // Save it to localStorage
     }
 
-    // Load saved language from localStorage
-    const savedLanguage = localStorage.getItem("selectedLanguage") || "en";
-    languageSelect.value = savedLanguage;
-    updateLanguage(savedLanguage);
+    // Update the language selection dropdown
+    if (languageSelect) {
+        languageSelect.value = selectedLang;
+        languageSelect.addEventListener("change", (event) => {
+            const newLang = event.target.value;
+            localStorage.setItem("selectedLanguage", newLang);
+            updateLanguage(newLang);
 
-    // Change language event
-    languageSelect.addEventListener("change", (event) => {
-        const selectedLang = event.target.value;
-        localStorage.setItem("selectedLanguage", selectedLang);
-        updateLanguage(selectedLang);
-    });
+            // Update the URL parameter without reloading the page
+            const newUrl = new URL(window.location);
+            newUrl.searchParams.set("lang", newLang);
+            window.history.replaceState(null, "", newUrl);
+        });
+    }
+
+    // Apply the selected language
+    updateLanguage(selectedLang);
 });

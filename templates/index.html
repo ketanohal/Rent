@@ -9,17 +9,29 @@
     <div class="home-container">
         <!-- Landing Page Content Section -->
         <div class="landing-content">
-            <h1 data-lang="home-welcome" class="animated-heading">Welcome to RentEase</h1>
+            <h1 data-lang="home-welcome" class="animated-heading">Welcome to NivasSetu</h1>
             <p data-lang="home-description" class="animated-text">
                 Your trusted solution for managing house rentals effortlessly. RentEase provides a seamless way to handle tenant information, manage rental payments, and streamline communication all in one place.
             </p>
             <div class="features">
-                <div class="feature-card" data-lang="feature-1">✔️ Easy Tenant Management</div>
-                <div class="feature-card" data-lang="feature-2">✔️ Payment Tracking & History</div>
-                <div class="feature-card" data-lang="feature-3">✔️ Automated Notifications</div>
-                <div class="feature-card" data-lang="feature-4">✔️ Secure Data Management</div>
+                <!-- Feature Cards with GIF Images -->
+                <div class="feature-card" data-lang="feature-1">
+                    <img src="{{ url_for('static', filename='images/tenant.gif') }}" alt="Tenant Management" class="feature-icon">
+                    <p>Track tenant details, lease agreements, and communication in one place.</p>
+                </div>
+                <div class="feature-card" data-lang="feature-2">
+                    <img src="{{ url_for('static', filename='images/payment.gif') }}" alt="Payment Tracking" class="feature-icon">
+                    <p>Get real-time updates on rent payments and generate reports effortlessly.</p>
+                </div>
+                <div class="feature-card" data-lang="feature-3">
+                    <img src="{{ url_for('static', filename='images/notification.gif') }}" alt="Notifications" class="feature-icon">
+                    <p>Stay informed with automated reminders for rent, maintenance, and more.</p>
+                </div>
+                <div class="feature-card" data-lang="feature-4">
+                    <img src="{{ url_for('static', filename='images/security.gif') }}" alt="Data Management" class="feature-icon">
+                    <p>Your data is safe with our advanced encryption and privacy measures.</p>
+                </div>
             </div>
-        </div>
 
         <!-- Login Form Section with 3D Floating Effect -->
         <div class="main-section" id="floating-card">
@@ -49,62 +61,109 @@
     <script>
         // Particles.js Configuration
         particlesJS("particles-js", {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: "#4db8ff" },
-                shape: { type: "circle" },
-                opacity: { value: 0.5, random: true },
-                size: { value: 3, random: true },
-                line_linked: { enable: true, distance: 150, color: "#4db8ff", opacity: 0.4, width: 1 },
-                move: { enable: true, speed: 3, direction: "none", random: true, straight: false, out_mode: "out" }
+        particles: {
+            number: { 
+                value: 40, // Reduced number of particles for a cleaner look
+                density: { 
+                    enable: true, 
+                    value_area: 800 
+                } 
             },
-            interactivity: {
-                detect_on: "canvas",
-                events: {
-                    onhover: { enable: true, mode: "repulse" },
-                    onclick: { enable: true, mode: "push" },
-                    resize: true
+            color: { 
+                value: "#4db8ff" // Preserved original particle color
+            },
+            shape: { 
+                type: "circle" 
+            },
+            opacity: { 
+                value: 0.7, // Slightly increased opacity for better visibility
+                random: true 
+            },
+            size: { 
+                value: 3, 
+                random: true 
+            },
+            line_linked: { 
+                enable: true, 
+                distance: 200, // Increased distance between particles
+                color: "#4db8ff", 
+                opacity: 0.4, 
+                width: 1 
+            },
+            move: { 
+                enable: true, 
+                speed: 2, // Slower movement for a calmer effect
+                direction: "none", 
+                random: true, 
+                straight: false, 
+                out_mode: "out" 
+            }
+        },
+        interactivity: {
+            detect_on: "canvas",
+            events: {
+                onhover: { 
+                    enable: true, 
+                    mode: "bubble" // Changed to "bubble" for a softer interaction
+                },
+                onclick: { 
+                    enable: true, 
+                    mode: "push" 
+                },
+                resize: true
+            },
+            modes: {
+                bubble: {
+                    distance: 200, // Increased distance for hover effect
+                    size: 6, // Slightly larger bubble effect
+                    duration: 2, // Slower bubble effect
+                    opacity: 0.8, // More visible bubble effect
+                    speed: 3 // Slower bubble speed
+                },
+                push: {
+                    particles_nb: 4 // Fewer particles pushed on click
                 }
-            },
-            retina_detect: true
-        });
+            }
+        },
+        retina_detect: true
+    });
 
-        // Anime.js Floating Card Animation
-        anime({
-            targets: "#floating-card",
-            translateY: [-10, 10],
-            duration: 2000,
-            direction: "alternate",
-            loop: true,
-            easing: "easeInOutSine"
-        });
+    // Anime.js Floating Card Animation
+    anime({
+        targets: "#floating-card",
+        translateY: [-10, 10],
+        duration: 2000,
+        direction: "alternate",
+        loop: true,
+        easing: "easeInOutSine"
+    });
 
-        // Anime.js Input Field Animations
-        anime({
-            targets: ".animated-input",
-            translateX: [-50, 0],
-            opacity: [0, 1],
-            delay: anime.stagger(100),
-            duration: 1000,
-            easing: "easeOutExpo"
-        });
+    // Anime.js Input Field Animations
+    anime({
+        targets: ".animated-input",
+        translateX: [-50, 0],
+        opacity: [0, 1],
+        delay: anime.stagger(100),
+        duration: 1000,
+        easing: "easeOutExpo"
+    });
 
-        // Anime.js Heading and Text Animations
-        anime({
-            targets: ".animated-heading",
-            translateY: [-50, 0],
-            opacity: [0, 1],
-            duration: 1500,
-            easing: "easeOutExpo"
-        });
+    // Anime.js Heading and Text Animations
+    anime({
+        targets: ".animated-heading",
+        translateY: [-50, 0],
+        opacity: [0, 1],
+        duration: 1500,
+        easing: "easeOutExpo"
+    });
 
-        anime({
-            targets: ".animated-text",
-            translateY: [50, 0],
-            opacity: [0, 1],
-            duration: 1500,
-            delay: 500,
-            easing: "easeOutExpo"
-        });
+    anime({
+        targets: ".animated-text",
+        translateY: [50, 0],
+        opacity: [0, 1],
+        duration: 1500,
+        delay: 500,
+        easing: "easeOutExpo"
+    });
     </script>
 {% endblock %}
