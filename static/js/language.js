@@ -1,6 +1,6 @@
 window.translations = window.translations || {
     en: {
-        "company-name": "RentEase",
+        "new-company-name": "NivasSetu",
         "nav-home": "Home",
         "nav-login": "Login",
         "nav-register": "Register",
@@ -14,11 +14,10 @@ window.translations = window.translations || {
         "expenses": "💸 Expenses",
         "reports": "📊 Reports",
         "user-greeting": "Hi,",
-        "company-name": "RentEase",
         "nav-home": "Home",
         "nav-login": "Login",
         "nav-register": "Register",
-        "home-welcome": "Welcome to RentEase",
+        "home-welcome": "Welcome to NivasSetu",
         "home-description": "Your trusted solution for managing house rentals effortlessly...",
         "feature-1": "✔️ Easy Tenant Management",
         "feature-2": "✔️ Payment Tracking & History",
@@ -180,7 +179,7 @@ window.translations = window.translations || {
         
     },
     mr: {
-        "company-name": "रेन्टईज",
+        "new-company-name": "निवाससेतु",
         "nav-home": "मुख्यपृष्ठ",
         "nav-login": "लॉगिन",
         "nav-register": "नोंदणी",
@@ -194,11 +193,10 @@ window.translations = window.translations || {
         "expenses": "💸 खर्च",
         "reports": "📊 अहवाल",
         "user-greeting": "नमस्कार",
-        "company-name": "रेन्टईज",
         "nav-home": "मुख्यपृष्ठ",
         "nav-login": "लॉगिन",
         "nav-register": "नोंदणी",
-        "home-welcome": "रेन्टईज मध्ये आपले स्वागत आहे",
+        "home-welcome": "निवाससेतु मध्ये आपले स्वागत आहे",
         "home-description": "भाडे व्यवस्थापन सोप्या पद्धतीने करण्यासाठी तुमचा विश्वसनीय उपाय...",
         "feature-1": "✔️ सोपी भाडेकरू व्यवस्थापन",
         "feature-2": "✔️ पेमेंट ट्रॅकिंग आणि इतिहास",
@@ -385,7 +383,7 @@ function updateLanguage(selectedLang) {
     // Update the company logo text
     const logo = document.querySelector(".logo");
     if (logo) {
-        logo.textContent = translations[selectedLang]["company-name"];
+        logo.textContent = translations[selectedLang]["new-company-name"];
     }
 
     console.log(`Language changed to: ${selectedLang}`);

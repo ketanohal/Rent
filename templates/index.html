@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Home - RentEase{% endblock %}
+{% block title %}Home - NivasSetu{% endblock %}
 
 {% block content %}
     <!-- Particles.js Background -->
@@ -9,43 +9,21 @@
     <div class="home-container">
         <!-- Landing Page Content Section -->
         <div class="landing-content">
-            <h1 data-lang="home-welcome" class="animated-heading">
-                <img src="{{ url_for('static', filename='images/welcome.png') }}" alt="Welcome" class="clipart">
-                Simplify Your Rental Management
-            </h1>
+            <h1 data-lang="home-welcome" class="animated-heading">Welcome to RentEase</h1>
             <p data-lang="home-description" class="animated-text">
-                RentEase is your all-in-one solution for seamless property management. From tenant onboarding to rent collection, we make it easy to manage your rentals with precision and ease.
+                Your trusted solution for managing house rentals effortlessly. RentEase provides a seamless way to handle tenant information, manage rental payments, and streamline communication all in one place.
             </p>
             <div class="features">
-                <div class="feature-card" data-lang="feature-1">
-                    <img src="{{ url_for('static', filename='images/tenant.png') }}" alt="Tenant Management" class="feature-icon">
-                    <h3>Effortless Tenant Management</h3>
-                    <p>Track tenant details, lease agreements, and communication in one place.</p>
-                </div>
-                <div class="feature-card" data-lang="feature-2">
-                    <img src="{{ url_for('static', filename='images/payment.png') }}" alt="Payment Tracking" class="feature-icon">
-                    <h3>Automated Payment Tracking</h3>
-                    <p>Get real-time updates on rent payments and generate reports effortlessly.</p>
-                </div>
-                <div class="feature-card" data-lang="feature-3">
-                    <img src="{{ url_for('static', filename='images/notification.png') }}" alt="Notifications" class="feature-icon">
-                    <h3>Smart Notifications</h3>
-                    <p>Stay informed with automated reminders for rent, maintenance, and more.</p>
-                </div>
-                <div class="feature-card" data-lang="feature-4">
-                    <img src="{{ url_for('static', filename='images/security.png') }}" alt="Data Security" class="feature-icon">
-                    <h3>Secure Data Management</h3>
-                    <p>Your data is safe with our advanced encryption and privacy measures.</p>
-                </div>
+                <div class="feature-card" data-lang="feature-1">✔️ Easy Tenant Management</div>
+                <div class="feature-card" data-lang="feature-2">✔️ Payment Tracking & History</div>
+                <div class="feature-card" data-lang="feature-3">✔️ Automated Notifications</div>
+                <div class="feature-card" data-lang="feature-4">✔️ Secure Data Management</div>
             </div>
         </div>
 
         <!-- Login Form Section with 3D Floating Effect -->
         <div class="main-section" id="floating-card">
-            <h2 data-lang="login-heading" class="animated-heading">
-                <img src="{{ url_for('static', filename='images/login.png') }}" alt="Login" class="clipart">
-                Login to Your Account
-            </h2>
+            <h2 data-lang="login-heading" class="animated-heading">Login</h2>
             <form action="/login" method="POST">
                 <div class="input-container">
                     <label for="username" data-lang="label-username">Username</label>
