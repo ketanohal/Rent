@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_USER = 'your-dockerhub-username'
-        DOCKERHUB_PASS = 'your-dockerhub-password'
-        IMAGE_NAME = 'your-dockerhub-username/webapp'
+        DOCKERHUB_USER = 'ketanohal'
+        DOCKERHUB_PASS = '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'
+        IMAGE_NAME = 'ketanohal/Rent'
     }
 
     stages {
