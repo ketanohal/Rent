@@ -8,7 +8,9 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'master', url: 'https://github.com/ketanohal/Rent.git'
+                script {
+                    checkout scm
+                }
             }
         }
 
