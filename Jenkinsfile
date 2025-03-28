@@ -10,7 +10,7 @@ pipeline {
         stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/ketanohal/your-repo.git'
+                git branch: 'main', url: 'https://github.com/ketanohal/Rent.git'
             }
         }
     }
