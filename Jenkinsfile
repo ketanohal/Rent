@@ -14,6 +14,15 @@ pipeline {
                 checkout scm
             }
         }
+        stage('Clean Workspace') {
+            steps {
+                script {
+                    // Clean Jenkins workspace to clear old files/logs
+                    cleanWs()
+                }
+            }
+        }
+
 
         stage('Build') {
             steps {
