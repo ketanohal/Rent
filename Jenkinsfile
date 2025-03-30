@@ -36,11 +36,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    // Ensure build happens in the Rent directory where Dockerfile is present
-                    dir('Rent') {
-                        // Build the Docker image
-                        sh 'docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${DOCKER_TAG} .'
-                    }
+                    // Build the Docker image in the root directory
+                    sh 'docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${DOCKER_TAG} .'
                 }
             }
         }
