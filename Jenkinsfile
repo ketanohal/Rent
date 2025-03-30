@@ -36,8 +36,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    // Build the Docker image in the root directory
-                    ssh 'docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${DOCKER_TAG} Rent'
+                    // Build the Docker image in the root directory where the Dockerfile is present
+                    sh 'docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${DOCKER_TAG} .'
                 }
             }
         }
