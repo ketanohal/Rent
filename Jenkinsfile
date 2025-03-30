@@ -55,11 +55,8 @@ pipeline {
         stage('Push to DockerHub') {
             steps {
                 script {
-                    // Use Docker Hub credentials to log in and push the image
-                    docker.withRegistry('https://docker.io', 'docker-hub-credentials') {
-                        // Push the Docker image to Docker Hub
-                        sh 'docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${DOCKER_TAG}'
-                    }
+                    // Push the Docker image to Docker Hub (no authentication required for public repos)
+                    sh 'docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${DOCKER_TAG}'
                 }
             }
         }
