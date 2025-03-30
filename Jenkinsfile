@@ -5,7 +5,7 @@ pipeline {
         DOCKER_IMAGE = "ketanohal/nivassetudcimage"
         DOCKER_TAG = "latest"
         DOCKER_REGISTRY = "docker.io"  // The Docker Hub registry
-        DOCKER_CREDS = 'docker-hub-credentials-id'  // Updated with the ID of your Docker credentials in Jenkins
+        DOCKER_CREDS = 'docker-hub-credentials-id'  // Jenkins credentials ID for Docker Hub
     }
 
     stages {
@@ -26,7 +26,7 @@ pipeline {
         stage('Push to DockerHub') {
             steps {
                 script {
-                    // Ensure proper Docker login with credentials
+                    // Ensure proper Docker login with credentials using DOCKER_CREDS
                     docker.withRegistry('https://docker.io', DOCKER_CREDS) {
                         // Push the image to Docker Hub
                         sh 'docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${DOCKER_TAG}'
