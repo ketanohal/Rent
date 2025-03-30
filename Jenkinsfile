@@ -26,14 +26,14 @@ pipeline {
         stage('Push to DockerHub') {
             steps {
                 script {
-                    // Log in to DockerHub and push the image
-                    docker.withRegistry('https://docker.io', DOCKER_CREDS) {
-                        sh 'docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${DOCKER_TAG}'
+                    // Ensure proper Docker login with credentials
+                    docker.withRegistry('https://docker.io', 'docker-hub-credentials') {
+                        // Push the image to Docker Hub
+                        sh 'docker push docker.io/ketanohal/nivassetudcimage:latest'
                     }
                 }
             }
         }
-
         stage('Clean Docker') {
             steps {
                 // Clean up Docker images and containers to save space
