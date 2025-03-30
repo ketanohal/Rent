@@ -14,6 +14,15 @@ pipeline {
                 checkout scm
             }
         }
+        stage('Clean Docker') {
+            steps {
+                script {
+                    // Clean up Docker images and containers
+                    sh 'docker system prune -f --volumes'
+                }
+            }
+        }
+
         stage('Clean Workspace') {
             steps {
                 script {
