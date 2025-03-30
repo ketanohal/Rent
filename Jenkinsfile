@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = "ketanohal/nivassetudcimage"
         DOCKER_TAG = "latest"
-        DOCKER_REGISTRY = "ketanohal"  // Your Docker Hub username
+        DOCKER_REGISTRY = "docker.io"  // The Docker Hub registry
     }
 
     stages {
@@ -37,10 +37,8 @@ pipeline {
         stage('Push to DockerHub') {
             steps {
                 script {
-                    // Fetch Docker Hub password from Jenkins credentials
-                    withCredentials([string(credentialsId: 'DOCKER_PASSWORD', variable: 'DOCKER_PASSWORD')]) {
-                        // Log in to Docker Hub using credentials
-                        sh 'docker login -u $DOCKER_REGISTRY -p $DOCKER_PASSWORD'
+                    // Use Docker Hub credentials to log in and push the image
+                    docker.withRegistry('https://docker.io', 'docker-hub-credentials') {
                         // Push the Docker image to Docker Hub
                         sh 'docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${DOCKER_TAG}'
                     }
