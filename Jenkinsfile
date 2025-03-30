@@ -18,8 +18,8 @@ pipeline {
         stage('Clean Docker') {
             steps {
                 script {
-                    // Clean up Docker images and containers
-                    sh 'docker system prune -f --volumes'
+                    // Clean up Docker images and containers with sudo
+                    sh 'sudo docker system prune -f --volumes'
                 }
             }
         }
@@ -33,21 +33,34 @@ pipeline {
             }
         }
 
+        stage('Docker Test') {
+            steps {
+                script {
+                    // Check Docker version and the PATH for debugging
+                    echo 'Checking Docker version...'
+                    sh 'sudo docker --version'
+                    echo 'Checking PATH...'
+                    sh 'echo $PATH'
+                }
+            }
+        }
+
         stage('Build') {
             steps {
                 script {
-                    // Build the Docker image in the root directory where the Dockerfile is present
-                    sh 'docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${DOCKER_TAG} .'
+                    // Build the Docker image using sudo
+                    sh 'sudo docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${DOCKER_TAG} .'
                 }
             }
         }
 
         stage('Test') {
             steps {
-                // Example: Run tests (adjust this according to your needs)
                 script {
                     echo 'Running Tests...'
-                    // Add your test commands here (e.g., `sh 'pytest'` for Python tests)
+                    // Example: Run tests (adjust this according to your needs)
+                    // Add your test commands here (e.g., `sh 'sudo docker ps'` for testing Docker status)
+                    sh 'sudo docker ps'
                 }
             }
         }
@@ -55,8 +68,11 @@ pipeline {
         stage('Push to DockerHub') {
             steps {
                 script {
-                    // Push the Docker image to Docker Hub (no authentication required for public repos)
-                    sh 'docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${DOCKER_TAG}'
+                    // Use Docker Hub credentials to log in and push the image
+                    docker.withRegistry('https://docker.io', 'docker-hub-credentials') {
+                        // Push the Docker image to Docker Hub with sudo
+                        sh 'sudo docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${DOCKER_TAG}'
+                    }
                 }
             }
         }
@@ -75,8 +91,8 @@ pipeline {
 
     post {
         always {
-            // Clean up Docker images after the build
-            sh 'docker system prune -f'
+            // Clean up Docker images after the build with sudo
+            sh 'sudo docker system prune -f'
         }
     }
 }
