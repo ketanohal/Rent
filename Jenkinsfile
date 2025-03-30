@@ -14,6 +14,7 @@ pipeline {
                 checkout scm
             }
         }
+
         stage('Clean Docker') {
             steps {
                 script {
@@ -32,12 +33,14 @@ pipeline {
             }
         }
 
-
         stage('Build') {
             steps {
                 script {
-                    // Build the Docker image
-                    sh 'docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${DOCKER_TAG} .'
+                    // Ensure build happens in the Rent directory where Dockerfile is present
+                    dir('Rent') {
+                        // Build the Docker image
+                        sh 'docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${DOCKER_TAG} .'
+                    }
                 }
             }
         }
