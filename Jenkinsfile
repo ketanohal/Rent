@@ -37,7 +37,7 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image in the root directory
-                    sh 'docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${DOCKER_TAG} .'
+                    ssh 'docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${DOCKER_TAG} Rent'
                 }
             }
         }
